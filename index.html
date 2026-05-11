@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ── VARIÁVEIS ── */
   :root {
     --black: #0c0c0c;
     --white: #f6f6f2;
@@ -21,478 +20,430 @@
     --shadow-md: 0 8px 32px rgba(0,0,0,0.11);
     --shadow-lg: 0 20px 56px rgba(0,0,0,0.16);
     --radius: 6px;
-    --transition: .28s cubic-bezier(.4,0,.2,1);
+    --tr: .28s cubic-bezier(.4,0,.2,1);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; font-size: 16px; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
 
-  /* ── CURSOR (desktop) ── */
+  /* CURSOR */
   @media (pointer: fine) {
     * { cursor: none !important; }
-    #cur { position: fixed; width: 8px; height: 8px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .18s, height .18s; }
+    #cur { position: fixed; width: 8px; height: 8px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
     #cur-r { position: fixed; width: 28px; height: 28px; border: 1.2px solid rgba(0,0,0,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all .1s ease; }
   }
 
-  /* ── NAVBAR ── */
+  /* NAVBAR */
   nav {
-    position: sticky; top: 0; z-index: 50;
+    position: sticky; top: 0; z-index: 100;
     height: 64px;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 40px;
-    background: rgba(246,246,242,0.94);
-    backdrop-filter: blur(16px);
+    background: rgba(246,246,242,0.95);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    transition: box-shadow var(--transition);
+    transition: box-shadow var(--tr);
   }
   nav.scrolled { box-shadow: var(--shadow-sm); }
-  .logo {
+  .nav-logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-img { width: 36px; height: 36px; object-fit: contain; border-radius: 4px; }
+  .nav-logo-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem; letter-spacing: .12em;
-    color: var(--black); text-decoration: none;
+    font-size: 1.4rem; letter-spacing: .12em;
+    color: var(--black); line-height: 1;
   }
-  .logo span { color: var(--gray-400); }
-  .nav-right {
-    display: flex; align-items: center; gap: 32px;
-  }
-  .nav-count {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .62rem; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase;
-    color: var(--gray-400);
-  }
+  .nav-logo-text span { color: var(--gray-400); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-count { font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-400); }
   .nav-wpp {
-    display: flex; align-items: center; gap: 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: .62rem; font-weight: 700;
-    letter-spacing: .18em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 7px;
+    font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
     color: var(--black); text-decoration: none;
-    padding: 8px 18px;
-    border: 1.5px solid var(--black);
-    border-radius: var(--radius);
-    transition: all var(--transition);
+    padding: 8px 16px; border: 1.5px solid var(--black); border-radius: var(--radius);
+    transition: all var(--tr);
   }
   .nav-wpp:hover { background: var(--black); color: var(--white); }
-  .nav-wpp svg { flex-shrink: 0; }
 
-  /* ── HERO STRIP ── */
-  .hero-strip {
-    padding: 64px 40px 48px;
-    display: flex; flex-direction: column;
-    align-items: flex-start;
-    max-width: 900px;
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 72px 56px 56px 40px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
   }
   .hero-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .6rem; font-weight: 700;
-    letter-spacing: .3em; text-transform: uppercase;
-    color: var(--gray-400);
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 18px;
+    font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--gray-400);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
     animation: fadeUp .7s .1s both;
   }
-  .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--gray-400); }
+  .hero-tag::before { content: ''; width: 22px; height: 1px; background: var(--gray-400); }
+  .hero-logo-big {
+    width: 80px; height: 80px; object-fit: contain;
+    margin-bottom: 24px; border-radius: 6px;
+    animation: fadeUp .7s .18s both;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,.12));
+  }
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.2rem, 7vw, 6rem);
-    letter-spacing: .03em; line-height: .92;
+    font-size: clamp(3.5rem, 6vw, 5.8rem);
+    letter-spacing: .03em; line-height: .9;
     margin-bottom: 18px;
-    animation: fadeUp .7s .2s both;
+    animation: fadeUp .7s .25s both;
   }
   .hero-sub {
-    font-size: .88rem; font-weight: 300;
-    color: var(--gray-600); line-height: 1.7;
-    max-width: 420px;
-    animation: fadeUp .7s .32s both;
+    font-size: .88rem; font-weight: 300; color: var(--gray-600); line-height: 1.75;
+    max-width: 380px; margin-bottom: 36px;
+    animation: fadeUp .7s .35s both;
   }
-
-  /* ── FILTRO / SEARCH ── */
-  .filter-bar {
-    padding: 0 40px 40px;
-    display: flex; gap: 12px; flex-wrap: wrap;
-    align-items: center;
-    animation: fadeUp .6s .4s both;
-  }
-  .filter-btn {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .6rem; font-weight: 700;
+  .hero-actions { display: flex; gap: 14px; align-items: center; animation: fadeUp .7s .45s both; }
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700;
     letter-spacing: .18em; text-transform: uppercase;
-    padding: 8px 18px;
-    border: 1.5px solid var(--gray-200);
-    border-radius: 100px;
-    background: transparent;
-    color: var(--gray-600);
-    transition: all var(--transition);
+    color: var(--white); background: var(--black);
+    border: 2px solid var(--black); padding: 13px 28px; border-radius: var(--radius);
+    text-decoration: none; transition: all var(--tr);
   }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--white);
+  .btn-primary:hover { background: transparent; color: var(--black); }
+  .btn-ghost {
+    font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--black); text-decoration: none;
+    display: flex; align-items: center; gap: 8px; transition: gap var(--tr);
   }
-  .search-wrap {
-    margin-left: auto;
-    position: relative;
-  }
-  .search-input {
-    font-family: 'Poppins', sans-serif;
-    font-size: .78rem; font-weight: 400;
-    padding: 8px 16px 8px 36px;
-    border: 1.5px solid var(--gray-200);
-    border-radius: 100px;
-    background: transparent;
-    color: var(--black);
-    outline: none;
-    width: 200px;
-    transition: border-color var(--transition), width var(--transition);
-  }
-  .search-input:focus { border-color: var(--black); width: 240px; }
-  .search-input::placeholder { color: var(--gray-400); }
-  .search-icon {
-    position: absolute; left: 12px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--gray-400); pointer-events: none;
-  }
+  .btn-ghost:hover { gap: 14px; }
+  .btn-ghost::after { content: '→'; }
 
-  /* ── GRID ── */
-  .catalog-grid {
-    padding: 0 40px 100px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-  }
-
-  /* ── PRODUCT CARD ── */
-  .card {
-    background: var(--gray-100);
-    border-radius: var(--radius);
-    overflow: hidden;
-    position: relative;
-    transition: transform var(--transition), box-shadow var(--transition);
-    animation: fadeUp .6s both;
-  }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-  }
-
-  /* Image area */
-  .card-img {
-    aspect-ratio: 4/5;
+  /* SLIDER HERO RIGHT */
+  .hero-right {
     position: relative; overflow: hidden;
     background: var(--gray-200);
-    display: flex; align-items: center; justify-content: center;
   }
-  .card-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform .5s cubic-bezier(.4,0,.2,1);
+  .slider-hero {
+    position: absolute; inset: 0;
+    display: flex; width: 100%; height: 100%;
+  }
+  .slide-hero {
+    min-width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    transition: none;
+    position: relative;
+  }
+  .slide-hero img {
+    width: 100%; height: 100%; object-fit: cover;
     display: block;
   }
-  .card-img .img-placeholder {
+  .slide-hero .slide-placeholder {
     width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px;
-    transition: transform .5s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px;
   }
-  .card:hover .card-img img,
-  .card:hover .img-placeholder { transform: scale(1.04); }
-
-  .placeholder-label {
+  .slide-placeholder-logo {
+    width: 72px; height: 72px; object-fit: contain; opacity: .18;
+  }
+  .slide-placeholder-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: .95rem; letter-spacing: .18em;
-    color: rgba(0,0,0,.18); text-align: center;
-    padding: 0 16px;
+    font-size: 1rem; letter-spacing: .22em;
+    color: rgba(0,0,0,.22); text-align: center; padding: 0 24px;
   }
-
-  /* badges */
-  .card-badges {
-    position: absolute; top: 14px; left: 14px;
-    display: flex; gap: 6px; flex-wrap: wrap;
-  }
-  .badge {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .52rem; font-weight: 700;
-    letter-spacing: .14em; text-transform: uppercase;
-    padding: 4px 9px; border-radius: 2px;
-  }
-  .badge-new { background: var(--black); color: var(--white); }
-  .badge-exc { background: var(--white); color: var(--black); border: 1px solid var(--border); }
-  .badge-lim { background: #e8e4dc; color: var(--gray-600); }
-
-  /* hover overlay */
-  .card-overlay {
-    position: absolute; inset: 0;
-    background: rgba(0,0,0,.32);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity var(--transition);
-  }
-  .card:hover .card-overlay { opacity: 1; }
-  .overlay-btn {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .62rem; font-weight: 700;
-    letter-spacing: .18em; text-transform: uppercase;
-    color: var(--black); background: var(--white);
-    border: none; padding: 12px 24px; border-radius: var(--radius);
-    transform: translateY(8px);
-    transition: transform var(--transition), background var(--transition);
-  }
-  .card:hover .overlay-btn { transform: translateY(0); }
-  .overlay-btn:hover { background: var(--gray-100); }
-
-  /* card body */
-  .card-body { padding: 20px; }
-  .card-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .74rem; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    color: var(--black); margin-bottom: 6px;
-  }
-  .card-desc {
-    font-size: .78rem; font-weight: 300;
-    color: var(--gray-600); line-height: 1.6;
-    margin-bottom: 6px;
-  }
-  .card-tags {
-    display: flex; gap: 6px; flex-wrap: wrap;
-    margin-bottom: 18px; margin-top: 8px;
-  }
-  .card-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .52rem; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase;
-    color: var(--gray-400);
-    padding: 3px 8px;
-    border: 1px solid var(--gray-200);
-    border-radius: 100px;
-  }
-  .card-footer {
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .card-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem; letter-spacing: .04em;
-    line-height: 1;
-    color: var(--black);
-  }
-  .card-price-sub {
-    font-size: .62rem; font-weight: 400;
-    color: var(--gray-400); font-family: 'Montserrat', sans-serif;
-    letter-spacing: .08em;
-    display: block; margin-top: 1px;
-  }
-
-  /* WhatsApp button */
-  .wpp-btn {
-    display: flex; align-items: center; gap: 7px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: .6rem; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    color: var(--white);
-    background: var(--wpp);
-    border: none; padding: 10px 16px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    transition: filter var(--transition), transform var(--transition);
-    white-space: nowrap;
-  }
-  .wpp-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-  .wpp-btn svg { flex-shrink: 0; }
-
-  /* ── MODAL ── */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.55);
-    backdrop-filter: blur(6px);
-    z-index: 200;
-    display: flex; align-items: center; justify-content: center;
+  /* slide caption */
+  .slide-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
     padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity var(--transition);
+    background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+    color: white;
   }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--white);
-    border-radius: 10px;
-    max-width: 720px; width: 100%;
-    max-height: 90vh; overflow-y: auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    transform: translateY(16px) scale(.98);
-    transition: transform var(--transition);
-    box-shadow: var(--shadow-lg);
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-  .modal-img {
-    aspect-ratio: 3/4;
-    background: var(--gray-200);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; border-radius: 10px 0 0 10px;
-  }
-  .modal-img img { width: 100%; height: 100%; object-fit: cover; }
-  .modal-img .img-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
-  .modal-content { padding: 40px 36px; display: flex; flex-direction: column; }
-  .modal-close {
-    align-self: flex-end;
-    background: none; border: none;
-    color: var(--gray-400); font-size: 1.4rem;
-    transition: color var(--transition);
-    line-height: 1; padding: 0; margin-bottom: 24px;
-  }
-  .modal-close:hover { color: var(--black); }
-  .modal-badge { margin-bottom: 12px; }
-  .modal-name {
+  .slide-caption-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; letter-spacing: .06em; line-height: 1;
-    margin-bottom: 10px;
+    font-size: 1.2rem; letter-spacing: .1em;
   }
-  .modal-desc {
-    font-size: .85rem; font-weight: 300;
-    color: var(--gray-600); line-height: 1.75;
-    margin-bottom: 20px;
+  .slide-caption-price { font-size: .78rem; font-weight: 300; opacity: .8; }
+  /* controls */
+  .slider-controls {
+    position: absolute; bottom: 20px; right: 20px;
+    display: flex; gap: 8px; z-index: 10;
   }
-  .modal-specs {
-    display: flex; flex-direction: column; gap: 8px;
-    padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    margin-bottom: 24px;
-  }
-  .spec-row {
-    display: flex; justify-content: space-between;
-    font-size: .75rem;
-  }
-  .spec-key { font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-family: 'Montserrat', sans-serif; color: var(--gray-400); font-size: .62rem; }
-  .spec-val { font-weight: 400; color: var(--black); }
-  .modal-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.4rem; letter-spacing: .04em;
-    margin-bottom: 20px;
-  }
-  .modal-wpp {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: .66rem; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase;
-    color: var(--white);
-    background: var(--wpp);
-    border: none; padding: 14px 24px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    transition: filter var(--transition), transform var(--transition);
-    width: 100%;
-  }
-  .modal-wpp:hover { filter: brightness(1.07); transform: translateY(-1px); }
-  .modal-note {
-    margin-top: 12px;
-    font-size: .68rem; font-weight: 300;
-    color: var(--gray-400); text-align: center; line-height: 1.5;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black);
-    padding: 40px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .12em; color: var(--white); text-decoration: none; }
-  .footer-logo span { color: rgba(255,255,255,.3); }
-  .footer-social { display: flex; gap: 12px; }
-  .footer-link {
-    display: flex; align-items: center; justify-content: center;
+  .sl-btn {
     width: 36px; height: 36px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: var(--radius);
-    color: rgba(255,255,255,.45); text-decoration: none;
-    font-size: .95rem;
-    transition: all var(--transition);
+    background: rgba(255,255,255,.18); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%; color: white; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--tr);
   }
-  .footer-link:hover { border-color: var(--white); color: var(--white); }
-  .footer-copy { font-size: .68rem; color: rgba(255,255,255,.28); font-family: 'Montserrat',sans-serif; letter-spacing:.1em; }
-
-  /* ── EMPTY STATE ── */
-  .empty {
-    grid-column: 1/-1;
-    padding: 80px 0; text-align: center;
-    color: var(--gray-400);
+  .sl-btn:hover { background: rgba(255,255,255,.35); }
+  .slider-dots {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 10;
   }
-  .empty-icon { font-size: 2.5rem; margin-bottom: 16px; }
-  .empty p { font-size: .88rem; }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.4);
+    transition: all var(--tr);
+  }
+  .dot.active { background: white; width: 18px; border-radius: 3px; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* MARQUEE */
+  .marquee-bar {
+    overflow: hidden; background: var(--black);
+    border-top: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif; font-size: .8rem;
+    letter-spacing: .28em; color: var(--gray-400);
+    padding: 0 36px; white-space: nowrap;
+    display: flex; align-items: center; gap: 36px;
+  }
+  .marquee-item::after { content: '◆'; font-size: .36rem; color: rgba(255,255,255,.2); }
+
+  /* CATALOG SECTION */
+  .catalog-section { padding: 64px 40px 80px; }
+  .catalog-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 36px; flex-wrap: wrap; gap: 16px;
+  }
+  .section-tag {
+    font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 700;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--gray-400);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .section-tag::before { content: ''; width: 18px; height: 1px; background: var(--gray-400); }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    letter-spacing: .04em; line-height: 1;
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    nav { padding: 0 20px; }
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 40px;
+  }
+  .filter-btn {
+    font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    padding: 7px 16px; border: 1.5px solid var(--gray-200); border-radius: 100px;
+    background: transparent; color: var(--gray-600); transition: all var(--tr);
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
+  .search-wrap { margin-left: auto; position: relative; }
+  .search-input {
+    font-family: 'Poppins', sans-serif; font-size: .76rem;
+    padding: 7px 14px 7px 34px;
+    border: 1.5px solid var(--gray-200); border-radius: 100px;
+    background: transparent; color: var(--black); outline: none; width: 190px;
+    transition: border-color var(--tr), width var(--tr);
+  }
+  .search-input:focus { border-color: var(--black); width: 230px; }
+  .search-input::placeholder { color: var(--gray-400); }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--gray-400); pointer-events: none; }
+
+  /* GRID */
+  .catalog-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--gray-100); border-radius: var(--radius);
+    overflow: hidden; position: relative;
+    transition: transform var(--tr), box-shadow var(--tr);
+    animation: fadeUp .6s both;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .card-img { aspect-ratio: 4/5; position: relative; overflow: hidden; background: var(--gray-200); display: flex; align-items: center; justify-content: center; }
+  .card-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; display:block; }
+  .card:hover .card-img img, .card:hover .img-placeholder { transform: scale(1.04); }
+  .img-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; transition: transform .5s ease; }
+  .placeholder-label { font-family:'Bebas Neue',sans-serif; font-size:.9rem; letter-spacing:.18em; color:rgba(0,0,0,.18); text-align:center; padding:0 14px; }
+  .card-badges { position:absolute; top:12px; left:12px; display:flex; gap:5px; flex-wrap:wrap; }
+  .badge { font-family:'Montserrat',sans-serif; font-size:.5rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:2px; }
+  .badge-new { background:var(--black); color:var(--white); }
+  .badge-exc { background:var(--white); color:var(--black); border:1px solid var(--border); }
+  .badge-lim { background:#e8e4dc; color:var(--gray-600); }
+  .card-overlay { position:absolute; inset:0; background:rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity var(--tr); }
+  .card:hover .card-overlay { opacity:1; }
+  .overlay-btn { font-family:'Montserrat',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--black); background:var(--white); border:none; padding:11px 22px; border-radius:var(--radius); transform:translateY(8px); transition:transform var(--tr); }
+  .card:hover .overlay-btn { transform:translateY(0); }
+  .card-body { padding: 18px; }
+  .card-name { font-family:'Montserrat',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--black); margin-bottom:5px; }
+  .card-desc { font-size:.76rem; font-weight:300; color:var(--gray-600); line-height:1.6; margin-bottom:14px; }
+  .card-tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:14px; }
+  .card-tag { font-family:'Montserrat',sans-serif; font-size:.5rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-400); padding:2px 7px; border:1px solid var(--gray-200); border-radius:100px; }
+  .card-footer { display:flex; align-items:center; justify-content:space-between; }
+  .card-price { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.04em; line-height:1; }
+  .card-price-sub { font-size:.6rem; font-weight:400; color:var(--gray-400); font-family:'Montserrat',sans-serif; display:block; margin-top:1px; }
+  .wpp-btn {
+    display:flex; align-items:center; gap:6px;
+    font-family:'Montserrat',sans-serif; font-size:.58rem; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--white); background:var(--wpp); border:none;
+    padding:9px 14px; border-radius:var(--radius);
+    text-decoration:none; transition:filter var(--tr), transform var(--tr); white-space:nowrap;
+  }
+  .wpp-btn:hover { filter:brightness(1.08); transform:translateY(-1px); }
+  .wpp-btn span { display: none; }
+  @media (min-width: 480px) { .wpp-btn span { display: inline; } }
+
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter:blur(6px); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity var(--tr); }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+  .modal { background:var(--white); border-radius:10px; max-width:700px; width:100%; max-height:90vh; overflow-y:auto; display:grid; grid-template-columns:1fr 1fr; transform:translateY(14px) scale(.98); transition:transform var(--tr); box-shadow:var(--shadow-lg); }
+  .modal-overlay.open .modal { transform:translateY(0) scale(1); }
+  .modal-img { aspect-ratio:3/4; background:var(--gray-200); display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:10px 0 0 10px; }
+  .modal-img img { width:100%; height:100%; object-fit:cover; }
+  .modal-img .img-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
+  .modal-content { padding:36px 30px; display:flex; flex-direction:column; }
+  .modal-close { align-self:flex-end; background:none; border:none; color:var(--gray-400); font-size:1.3rem; transition:color var(--tr); line-height:1; padding:0; margin-bottom:20px; }
+  .modal-close:hover { color:var(--black); }
+  .modal-badge { margin-bottom:10px; }
+  .modal-name { font-family:'Bebas Neue',sans-serif; font-size:1.9rem; letter-spacing:.05em; line-height:1; margin-bottom:10px; }
+  .modal-desc { font-size:.83rem; font-weight:300; color:var(--gray-600); line-height:1.75; margin-bottom:18px; }
+  .modal-specs { display:flex; flex-direction:column; gap:8px; padding:14px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:22px; }
+  .spec-row { display:flex; justify-content:space-between; font-size:.73rem; }
+  .spec-key { font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-family:'Montserrat',sans-serif; color:var(--gray-400); font-size:.6rem; }
+  .spec-val { font-weight:400; color:var(--black); }
+  .modal-price { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:.04em; margin-bottom:18px; }
+  .modal-wpp { display:flex; align-items:center; justify-content:center; gap:9px; font-family:'Montserrat',sans-serif; font-size:.63rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--white); background:var(--wpp); border:none; padding:13px 22px; border-radius:var(--radius); text-decoration:none; transition:filter var(--tr); width:100%; }
+  .modal-wpp:hover { filter:brightness(1.07); }
+  .modal-note { margin-top:10px; font-size:.66rem; font-weight:300; color:var(--gray-400); text-align:center; line-height:1.5; }
+
+  /* EMPTY */
+  .empty { grid-column:1/-1; padding:80px 0; text-align:center; color:var(--gray-400); }
+  .empty-icon { font-size:2.2rem; margin-bottom:14px; }
+  .empty p { font-size:.86rem; }
+
+  /* FOOTER */
+  footer { background:var(--black); padding:36px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  .footer-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .footer-logo-img { width:30px; height:30px; object-fit:contain; border-radius:3px; }
+  .footer-logo-text { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:.12em; color:var(--white); }
+  .footer-logo-text span { color:rgba(255,255,255,.3); }
+  .footer-social { display:flex; gap:10px; }
+  .footer-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); color:rgba(255,255,255,.4); text-decoration:none; transition:all var(--tr); }
+  .footer-link:hover { border-color:var(--white); color:var(--white); }
+  .footer-copy { font-size:.66rem; color:rgba(255,255,255,.25); font-family:'Montserrat',sans-serif; letter-spacing:.08em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 18px; }
     .nav-count { display: none; }
-    .hero-strip { padding: 48px 20px 36px; }
-    .filter-bar { padding: 0 20px 32px; }
-    .catalog-grid { padding: 0 20px 80px; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .card-body { padding: 14px; }
-    .card-name { font-size: .66rem; }
-    .card-desc { font-size: .72rem; }
-    .card-price { font-size: 1.4rem; }
-    .wpp-btn { font-size: .54rem; padding: 9px 12px; gap: 5px; }
-    .wpp-btn span { display: none; }
-    .search-wrap { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 48px 20px 40px; }
+    .hero-right { min-height: 60vw; }
+    .catalog-section { padding: 48px 18px 64px; }
+    .catalog-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card-body { padding: 13px; }
     .modal { grid-template-columns: 1fr; }
     .modal-img { border-radius: 10px 10px 0 0; aspect-ratio: 4/3; }
-    .modal-content { padding: 24px 20px; }
-    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .modal-content { padding: 22px 18px; }
+    footer { padding: 28px 18px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 420px) {
+    .catalog-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- cursor -->
 <div id="cur"></div>
 <div id="cur-r"></div>
 
-<!-- ── NAVBAR ── -->
+<!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#" class="logo">FRPJSTORE<span>.BR</span></a>
+  <a href="#" class="nav-logo-wrap">
+    <img class="nav-logo-img" src="data:image/png;base64,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" alt="FRPJSTORE.BR Logo">
+    <span class="nav-logo-text">FRPJSTORE<span>.BR</span></span>
+  </a>
   <div class="nav-right">
     <span class="nav-count" id="navCount">— peças</span>
     <a href="https://wa.me/5563992795579" target="_blank" class="nav-wpp">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Falar no WhatsApp
+      <svg width="https://wa.me/5563992795579" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
     </a>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<div class="hero-strip">
-  <div class="hero-tag">Catálogo Oficial</div>
-  <h1 class="hero-title">CAMISETAS<br>STREETWEAR</h1>
-  <p class="hero-sub">Escolha sua peça e fale direto com a gente no WhatsApp para confirmar seu pedido.</p>
-</div>
+<!-- HERO -->
+<div class="hero">
+  <!-- LEFT: texto + logo -->
+  <div class="hero-left">
+    <div class="hero-tag">Catálogo Oficial</div>
+    <img class="hero-logo-big" src="data:image/png;base64,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" alt="FRPJSTORE.BR">
+    <h1 class="hero-title">CAMISETAS<br>STREETWEAR</h1>
+    <p class="hero-sub">Escolha sua peça e fale direto com a gente no WhatsApp para confirmar seu pedido.</p>
+    <div class="hero-actions">
+      <a href="#catalogo" class="btn-primary">VER CATÁLOGO</a>
+      <a href="fds" target="_blank" class="btn-ghost">Falar no Zap</a>
+    </div>
+  </div>
 
-<!-- ── FILTRO ── -->
-<div class="filter-bar" id="filterBar">
-  <button class="filter-btn active" data-filter="all">Todos</button>
-  <button class="filter-btn" data-filter="oversized">Oversized</button>
-  <button class="filter-btn" data-filter="estampada">Estampada</button>
-  <button class="filter-btn" data-filter="basica">Básica</button>
-  <button class="filter-btn" data-filter="exclusiva">Exclusiva</button>
-  <div class="search-wrap">
-    <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input class="search-input" id="searchInput" type="text" placeholder="Buscar modelo...">
+  <!-- RIGHT: slider -->
+  <div class="hero-right">
+    <div class="slider-hero" id="sliderHero"></div>
+    <div class="slider-dots" id="sliderDots"></div>
+    <div class="slider-controls">
+      <button class="sl-btn" onclick="slideStep(-1)">&#8592;</button>
+      <button class="sl-btn" onclick="slideStep(1)">&#8594;</button>
+    </div>
   </div>
 </div>
 
-<!-- ── GRID ── -->
-<div class="catalog-grid" id="catalogGrid"></div>
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <div class="marquee-item">FRPJSTORE.BR</div>
+    <div class="marquee-item">STREETWEAR PREMIUM</div>
+    <div class="marquee-item">100% ALGODÃO</div>
+    <div class="marquee-item">OVERSIZED FIT</div>
+    <div class="marquee-item">ENVIO BRASIL</div>
+    <div class="marquee-item">AUTENTICIDADE</div>
+    <div class="marquee-item">FRPJSTORE.BR</div>
+    <div class="marquee-item">STREETWEAR PREMIUM</div>
+    <div class="marquee-item">100% ALGODÃO</div>
+    <div class="marquee-item">OVERSIZED FIT</div>
+    <div class="marquee-item">ENVIO BRASIL</div>
+    <div class="marquee-item">AUTENTICIDADE</div>
+  </div>
+</div>
 
-<!-- ── MODAL ── -->
+<!-- CATÁLOGO -->
+<section class="catalog-section" id="catalogo">
+  <div class="catalog-header">
+    <div>
+      <div class="section-tag">Produtos</div>
+      <h2 class="section-title">TODAS AS PEÇAS</h2>
+    </div>
+  </div>
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="oversized">Oversized</button>
+    <button class="filter-btn" data-filter="estampada">Estampada</button>
+    <button class="filter-btn" data-filter="basica">Básica</button>
+    <button class="filter-btn" data-filter="exclusiva">Exclusiva</button>
+    <div class="search-wrap">
+      <svg class="search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" id="searchInput" type="text" placeholder="Buscar modelo...">
+    </div>
+  </div>
+  <div class="catalog-grid" id="catalogGrid"></div>
+</section>
+
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-img" id="modalImg"></div>
@@ -504,7 +455,7 @@
       <div class="modal-specs" id="modalSpecs"></div>
       <div class="modal-price" id="modalPrice"></div>
       <a class="modal-wpp" id="modalWpp" href="#" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Tenho interesse nessa peça
       </a>
       <p class="modal-note" id="modalNote"></p>
@@ -512,174 +463,159 @@
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">FRPJSTORE<span>.BR</span></a>
+  <a href="#" class="footer-brand">
+    <img class="footer-logo-img" src="data:image/png;base64,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" alt="logo">
+    <span class="footer-logo-text">FRPJSTORE<span>.BR</span></span>
+  </a>
   <div class="footer-social">
     <a href="https://www.instagram.com/frpjstore.br/" target="_blank" class="footer-link" title="Instagram">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
     <a href="https://wa.me/5563992795579" target="_blank" class="footer-link" title="WhatsApp">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
   </div>
   <span class="footer-copy">© 2025 FRPJSTORE.BR — Todos os direitos reservados.</span>
 </footer>
 
 <script>
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
 //  ⚙️  CONFIGURAÇÕES — edite aqui
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
+const WHATSAPP_NUMBER = '5563992795579'; // ← seu número: 55 + DDD + número
 
-const WHATSAPP_NUMBER = '5563992795579'; // ← Coloque seu número aqui (55 + DDD + número, sem espaços)
-
-// ════════════════════════════════════════════
-//  🛍️  PRODUTOS — adicione, edite ou remova
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
+//  🛍️  PRODUTOS
+// ══════════════════════════════════════════
 const products = [
   {
-    id: 1,
-    name: 'Essential Oversized',
-    description: 'O clássico que nunca sai de moda. Camiseta oversized com caimento perfeito, ideal para qualquer ocasião do dia.',
-    price: 129,
-    category: 'oversized',
-    badges: ['new'],
-    image: null, // ← coloque a URL da foto aqui: 'fotos/camiseta1.jpg'
-    color: '#d8d8d4',
-    specs: {
-      'Tecido': '100% Algodão 30.1',
-      'Modelagem': 'Oversized',
-      'Tamanhos': 'P / M / G / GG',
-      'Cuidados': 'Lavar à mão ou máquina fria',
-    }
+    id: 1, name: 'Essential Oversized',
+    description: 'O clássico que nunca sai de moda. Camiseta oversized com caimento perfeito.',
+    price: 129, category: 'oversized', badges: ['new'], image: null,
+    color: '#d4d4d0',
+    specs: { 'Tecido': '100% Algodão 30.1', 'Modelagem': 'Oversized', 'Tamanhos': 'P / M / G / GG', 'Cuidados': 'Lavar à mão ou máquina fria' }
   },
   {
-    id: 2,
-    name: 'FRPJ Logo Drop',
-    description: 'Edição com a identidade da FRPJSTORE em destaque. Estampa exclusiva na frente com tipografia bold.',
-    price: 149,
-    category: 'estampada',
-    badges: ['exclusiva'],
-    image: null,
-    color: '#c4c4c0',
-    specs: {
-      'Tecido': '100% Algodão 30.1',
-      'Modelagem': 'Oversized',
-      'Tamanhos': 'P / M / G / GG',
-      'Estampa': 'Serigrafia Premium',
-    }
+    id: 2, name: 'FRPJ Logo Drop',
+    description: 'Estampa exclusiva com a identidade da FRPJSTORE em destaque.',
+    price: 149, category: 'estampada', badges: ['exclusiva'], image: null,
+    color: '#c0c0bc',
+    specs: { 'Tecido': '100% Algodão 30.1', 'Modelagem': 'Oversized', 'Tamanhos': 'P / M / G / GG', 'Estampa': 'Serigrafia Premium' }
   },
   {
-    id: 3,
-    name: 'Signature Clean',
-    description: 'Minimalismo premium. Sem estampa, sem excessos — apenas o corte e a qualidade falando por si.',
-    price: 139,
-    category: 'basica',
-    badges: [],
-    image: null,
-    color: '#e0e0dc',
-    specs: {
-      'Tecido': '100% Algodão Penteado',
-      'Modelagem': 'Oversized',
-      'Tamanhos': 'P / M / G / GG / XGG',
-      'Acabamento': 'Barra dupla ponto corrente',
-    }
+    id: 3, name: 'Signature Clean',
+    description: 'Minimalismo premium. Sem estampa, apenas corte e qualidade.',
+    price: 139, category: 'basica', badges: [], image: null,
+    color: '#dcdcd8',
+    specs: { 'Tecido': '100% Algodão Penteado', 'Modelagem': 'Oversized', 'Tamanhos': 'P / M / G / GG / XGG', 'Acabamento': 'Barra dupla ponto corrente' }
   },
   {
-    id: 4,
-    name: 'Dark Tone Oversized',
-    description: 'Para quem prefere o lado mais sombrio do streetwear. Cor escura com lavagem especial de fábrica.',
-    price: 159,
-    category: 'oversized',
-    badges: ['lim'],
-    image: null,
-    color: '#4a4a48',
-    specs: {
-      'Tecido': '100% Algodão 30.1',
-      'Modelagem': 'Oversized pesado',
-      'Tamanhos': 'P / M / G / GG',
-      'Cor': 'Preto estonado',
-    }
+    id: 4, name: 'Dark Tone Oversized',
+    description: 'Para quem prefere o lado mais sombrio do streetwear. Lavagem especial.',
+    price: 159, category: 'oversized', badges: ['lim'], image: null,
+    color: '#3a3a38',
+    specs: { 'Tecido': '100% Algodão 30.1', 'Modelagem': 'Oversized pesado', 'Tamanhos': 'P / M / G / GG', 'Cor': 'Preto estonado' }
   },
   {
-    id: 5,
-    name: 'Street Gráfica Vol.1',
-    description: 'Primeira edição da coleção gráfica da FRPJSTORE. Arte exclusiva desenvolvida para esse drop.',
-    price: 169,
-    category: 'estampada',
-    badges: ['exclusiva', 'lim'],
-    image: null,
-    color: '#c8c0b8',
-    specs: {
-      'Tecido': '100% Algodão 30.1',
-      'Modelagem': 'Oversized',
-      'Tamanhos': 'M / G / GG',
-      'Estampa': 'DTF Full Color',
-    }
+    id: 5, name: 'Street Gráfica Vol.1',
+    description: 'Primeira edição da coleção gráfica. Arte exclusiva desenvolvida para esse drop.',
+    price: 169, category: 'estampada', badges: ['exclusiva', 'lim'], image: null,
+    color: '#c4beb4',
+    specs: { 'Tecido': '100% Algodão 30.1', 'Modelagem': 'Oversized', 'Tamanhos': 'M / G / GG', 'Estampa': 'DTF Full Color' }
   },
   {
-    id: 6,
-    name: 'Camo Neutral Drop',
-    description: 'Camuflagem em tons neutros que combina com tudo. Um clássico do streetwear com toque premium.',
-    price: 155,
-    category: 'estampada',
-    badges: ['new'],
-    image: null,
-    color: '#b8b4a8',
-    specs: {
-      'Tecido': '100% Algodão',
-      'Modelagem': 'Oversized',
-      'Tamanhos': 'P / M / G / GG',
-      'Padrão': 'Camo Neutro Custom',
-    }
+    id: 6, name: 'Camo Neutral Drop',
+    description: 'Camuflagem em tons neutros. Um clássico do streetwear com toque premium.',
+    price: 155, category: 'estampada', badges: ['new'], image: null,
+    color: '#b4b0a4',
+    specs: { 'Tecido': '100% Algodão', 'Modelagem': 'Oversized', 'Tamanhos': 'P / M / G / GG', 'Padrão': 'Camo Neutro Custom' }
   },
 ];
 
-// ════════════════════════════════════════════
-//  🔧  ENGINE — não precisa mexer aqui
-// ════════════════════════════════════════════
-
+// ══════════════════════════════════════════
+//  🔧  ENGINE
+// ══════════════════════════════════════════
 const WPP = WHATSAPP_NUMBER;
 const grid = document.getElementById('catalogGrid');
 const navCount = document.getElementById('navCount');
-
+const LOGO = document.querySelector('.nav-logo-img').src; // badge map
 const badgeMap = {
   new:       { label: 'Novo', cls: 'badge-new' },
   exclusiva: { label: 'Exclusiva', cls: 'badge-exc' },
-  lim:       { label: 'Edição Limitada', cls: 'badge-lim' },
+  lim:       { label: 'Ed. Limitada', cls: 'badge-lim' },
 };
 
-function wppLink(product) {
-  const msg = encodeURIComponent(
-    `Olá! Vi o catálogo da FRPJSTORE.BR e fiquei interessado(a) na camiseta *${product.name}* (R$ ${product.price.toFixed(2).replace('.',',')}). Gostaria de mais informações! 😊`
-  );
+function wppLink(p) {
+  const msg = encodeURIComponent(`Olá! Vi o catálogo da FRPJSTORE.BR e fiquei interessado(a) na camiseta *${p.name}* (R$ ${p.price.toFixed(2).replace('.',',')}). Gostaria de mais informações! 😊`);
   return `https://wa.me/${WPP}?text=${msg}`;
 }
 
-function buildPlaceholder(product) {
-  return `
-    <div class="img-placeholder" style="background:${product.color}">
-      <svg width="72" height="96" viewBox="0 0 72 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 24 Q8 16 36 16 Q64 16 64 24 L67 88 H5 Z" fill="rgba(255,255,255,.18)"/>
-        <path d="M8 24 L0 60 H14 L20 28" fill="rgba(255,255,255,.12)"/>
-        <path d="M64 24 L72 60 H58 L52 28" fill="rgba(255,255,255,.12)"/>
-      </svg>
-      <span class="placeholder-label">${product.name}</span>
-    </div>`;
+function buildPlaceholder(p, logoSrc) {
+  return `<div class="img-placeholder" style="background:${p.color}">
+    <img src="${logoSrc}" style="width:48px;height:48px;object-fit:contain;opacity:.22;border-radius:4px" alt="">
+    <span class="placeholder-label">${p.name}</span>
+  </div>`;
 }
 
+// ── SLIDER ──
+let sliderIdx = 0;
+let sliderTimer;
+const sliderEl = document.getElementById('sliderHero');
+const dotsEl = document.getElementById('sliderDots');
+
+function buildSlider(logoSrc) {
+  sliderEl.innerHTML = products.map(p => `
+    <div class="slide-hero">
+      ${p.image
+        ? `<img src="${p.image}" alt="${p.name}">`
+        : `<div class="slide-placeholder" style="background:${p.color}">
+             <img class="slide-placeholder-logo" src="${logoSrc}" alt="">
+             <span class="slide-placeholder-label">${p.name}</span>
+           </div>`
+      }
+      <div class="slide-caption">
+        <div class="slide-caption-name">${p.name}</div>
+        <div class="slide-caption-price">R$ ${p.price}</div>
+      </div>
+    </div>`).join('');
+
+  dotsEl.innerHTML = products.map((_,i) =>
+    `<div class="dot${i===0?' active':''}" onclick="goSlide(${i})"></div>`
+  ).join('');
+
+  goSlide(0, false);
+  sliderTimer = setInterval(() => slideStep(1), 4000);
+}
+
+function goSlide(idx, animate = true) {
+  sliderIdx = (idx + products.length) % products.length;
+  const slides = sliderEl.querySelectorAll('.slide-hero');
+  slides.forEach((s, i) => {
+    s.style.transition = animate ? 'transform .55s cubic-bezier(.4,0,.2,1)' : 'none';
+    s.style.transform = `translateX(${(i - sliderIdx) * 100}%)`;
+  });
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === sliderIdx));
+}
+
+function slideStep(dir) {
+  clearInterval(sliderTimer);
+  goSlide(sliderIdx + dir);
+  sliderTimer = setInterval(() => slideStep(1), 4000);
+}
+
+// ── RENDER CARDS ──
 function renderCards(list) {
+  const logoSrc = document.querySelector('.nav-logo-img').src;
   if (!list.length) {
     grid.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><p>Nenhuma peça encontrada.</p></div>`;
     return;
   }
   grid.innerHTML = list.map((p, i) => `
-    <div class="card" style="animation-delay:${i * .07}s" data-id="${p.id}">
+    <div class="card" style="animation-delay:${i*.07}s" data-id="${p.id}">
       <div class="card-img">
-        ${p.image
-          ? `<img src="${p.image}" alt="${p.name}" loading="lazy">`
-          : buildPlaceholder(p)
-        }
+        ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : buildPlaceholder(p, logoSrc)}
         ${p.badges.length ? `<div class="card-badges">${p.badges.map(b=>`<span class="badge ${badgeMap[b].cls}">${badgeMap[b].label}</span>`).join('')}</div>` : ''}
         <div class="card-overlay">
           <button class="overlay-btn" onclick="openModal(${p.id})">Ver detalhes</button>
@@ -688,29 +624,24 @@ function renderCards(list) {
       <div class="card-body">
         <div class="card-name">${p.name}</div>
         <div class="card-desc">${p.description}</div>
-        <div class="card-tags">
-          ${Object.entries(p.specs).slice(0,2).map(([k,v])=>`<span class="card-tag">${v}</span>`).join('')}
-        </div>
+        <div class="card-tags">${Object.entries(p.specs).slice(0,2).map(([,v])=>`<span class="card-tag">${v}</span>`).join('')}</div>
         <div class="card-footer">
           <div>
             <span class="card-price">R$ ${p.price}</span>
             <span class="card-price-sub">+ frete</span>
           </div>
           <a class="wpp-btn" href="${wppLink(p)}" target="_blank" onclick="event.stopPropagation()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             <span>Tenho interesse</span>
           </a>
         </div>
       </div>
-    </div>
-  `).join('');
-  navCount.textContent = `${list.length} ${list.length === 1 ? 'peça' : 'peças'}`;
+    </div>`).join('');
+  navCount.textContent = `${list.length} ${list.length===1?'peça':'peças'}`;
 }
 
-// Filter & search
-let activeFilter = 'all';
-let activeSearch = '';
-
+// ── FILTER / SEARCH ──
+let activeFilter = 'all', activeSearch = '';
 function applyFilter() {
   let list = products;
   if (activeFilter !== 'all') list = list.filter(p => p.category === activeFilter);
@@ -720,7 +651,6 @@ function applyFilter() {
   );
   renderCards(list);
 }
-
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -729,58 +659,39 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     applyFilter();
   });
 });
-
 document.getElementById('searchInput').addEventListener('input', e => {
   activeSearch = e.target.value.toLowerCase().trim();
   applyFilter();
 });
 
-// Modal
+// ── MODAL ──
 function openModal(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
-
+  const logoSrc = document.querySelector('.nav-logo-img').src;
   document.getElementById('modalImg').innerHTML = p.image
     ? `<img src="${p.image}" alt="${p.name}">`
-    : buildPlaceholder(p);
-
-  document.getElementById('modalBadge').innerHTML = p.badges.map(b =>
-    `<span class="badge ${badgeMap[b].cls}">${badgeMap[b].label}</span>`
-  ).join(' ');
-
+    : buildPlaceholder(p, logoSrc);
+  document.getElementById('modalBadge').innerHTML = p.badges.map(b => `<span class="badge ${badgeMap[b].cls}">${badgeMap[b].label}</span>`).join(' ');
   document.getElementById('modalName').textContent = p.name;
   document.getElementById('modalDesc').textContent = p.description;
   document.getElementById('modalPrice').textContent = `R$ ${p.price.toFixed(2).replace('.',',')}`;
-
-  document.getElementById('modalSpecs').innerHTML = Object.entries(p.specs).map(([k,v]) => `
-    <div class="spec-row">
-      <span class="spec-key">${k}</span>
-      <span class="spec-val">${v}</span>
-    </div>`).join('');
-
+  document.getElementById('modalSpecs').innerHTML = Object.entries(p.specs).map(([k,v]) =>
+    `<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`
+  ).join('');
   document.getElementById('modalWpp').href = wppLink(p);
-  document.getElementById('modalNote').textContent =
-    `Você será redirecionado(a) para o WhatsApp com a informação sobre "${p.name}" já preenchida.`;
-
+  document.getElementById('modalNote').textContent = `Você será direcionado(a) ao WhatsApp com a mensagem sobre "${p.name}" já preenchida.`;
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
-}
-function closeModalBtn() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
+function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalBtn(); }
+function closeModalBtn() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
 
-// Navbar scroll
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 20);
-});
+// ── NAVBAR SCROLL ──
+window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 20));
 
-// Cursor
+// ── CURSOR ──
 const cur = document.getElementById('cur');
 const curR = document.getElementById('cur-r');
 if (cur) {
@@ -789,7 +700,9 @@ if (cur) {
   (function loop(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(loop); })();
 }
 
-// Init
+// ── INIT ──
+const logoSrc = document.querySelector('.nav-logo-img').src;
+buildSlider(logoSrc);
 renderCards(products);
 </script>
 </body>
