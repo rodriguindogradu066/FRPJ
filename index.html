@@ -563,7 +563,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
       </div>
       <div class="stat-item reveal reveal-delay-2">
         <div class="stat-val">BR</div>
-        <div class="stat-label">Envio Nacional;</div>
+        <div class="stat-label">Envio Nacional</div>
       </div>
       <div class="stat-item reveal reveal-delay-3">
         <div class="stat-val">12x</div>
@@ -661,81 +661,214 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
+<!-- CHECKOUT TRANSPARENTE -->
 <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckoutOutside(event)">
-  <div class="checkout-modal">
-    <div class="checkout-header">
-      <div class="checkout-title">FINALIZAR PEDIDO</div>
-      <button class="checkout-close" onclick="closeCheckout()">✕</button>
+  <div class="checkout-modal" style="position:relative;max-width:520px;">
+
+    <!-- Loading overlay -->
+    <div class="pay-loading" id="payLoading">
+      <div class="pay-loading-spinner"></div>
+      <div class="pay-loading-text" id="payLoadingText">Processando...</div>
     </div>
-    <div class="checkout-product">
-      <img id="coImg" src="" alt="">
-      <div>
-        <div class="checkout-product-name" id="coName"></div>
-        <div class="checkout-product-detail" id="coDetail"></div>
+
+    <!-- Status de sucesso/erro -->
+    <div class="pay-status" id="payStatus">
+      <div class="pay-status-icon" id="payStatusIcon"></div>
+      <div class="pay-status-title" id="payStatusTitle"></div>
+      <div class="pay-status-msg" id="payStatusMsg"></div>
+      <div class="pay-status-pedido" id="payStatusPedido" style="display:none">
+        Número do pedido:<strong id="payStatusNum"></strong>
       </div>
-      <div class="checkout-product-price" id="coPrice"></div>
+      <button onclick="closeCheckout()" style="margin-top:20px;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--black);background:var(--white);border:none;padding:12px 28px;border-radius:var(--radius);">FECHAR</button>
     </div>
-    <div class="checkout-form">
-      <div class="form-section-title">Seus dados</div>
-      <div class="form-group">
-        <label class="form-label">Nome completo *</label>
-        <input class="form-input" id="coNome" type="text" placeholder="Seu nome completo">
-        <div class="form-error" id="coNomeErr">Informe seu nome</div>
+
+    <!-- Form principal -->
+    <div id="checkoutForm">
+      <div class="checkout-header">
+        <div class="checkout-title">FINALIZAR PEDIDO</div>
+        <button class="checkout-close" onclick="closeCheckout()">✕</button>
       </div>
-      <div class="form-row">
+      <div class="checkout-product">
+        <img id="coImg" src="" alt="">
         <div>
-          <label class="form-label">Email *</label>
-          <input class="form-input" id="coEmail" type="email" placeholder="email@exemplo.com">
-          <div class="form-error" id="coEmailErr">Email inválido</div>
+          <div class="checkout-product-name" id="coName"></div>
+          <div class="checkout-product-detail" id="coDetail"></div>
         </div>
-        <div>
+        <div class="checkout-product-price" id="coPrice"></div>
+      </div>
+      <div class="checkout-form">
+
+        <!-- Dados pessoais -->
+        <div class="form-section-title">Seus dados</div>
+        <div class="form-group">
+          <label class="form-label">Nome completo *</label>
+          <input class="form-input" id="coNome" type="text" placeholder="Seu nome completo">
+          <div class="form-error" id="coNomeErr">Informe seu nome</div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label">Email *</label>
+            <input class="form-input" id="coEmail" type="email" placeholder="email@exemplo.com">
+            <div class="form-error" id="coEmailErr">Email inválido</div>
+          </div>
+          <div>
+            <label class="form-label">CPF *</label>
+            <input class="form-input" id="coCpf" type="text" placeholder="000.000.000-00" oninput="maskCpf(this)">
+            <div class="form-error" id="coCpfErr">CPF inválido</div>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="form-label">WhatsApp *</label>
           <input class="form-input" id="coTel" type="tel" placeholder="(63) 99999-9999">
           <div class="form-error" id="coTelErr">Informe seu WhatsApp</div>
         </div>
-      </div>
-      <div class="form-section-title">Endereço de entrega</div>
-      <div class="form-row">
-        <div>
-          <label class="form-label">CEP *</label>
-          <input class="form-input" id="coCep" type="text" placeholder="00000-000" oninput="buscarCep(this)">
-          <div class="form-error" id="coCepErr">CEP inválido</div>
+
+        <!-- Endereço -->
+        <div class="form-section-title">Endereço de entrega</div>
+        <div class="form-row">
+          <div>
+            <label class="form-label">CEP *</label>
+            <input class="form-input" id="coCep" type="text" placeholder="00000-000" oninput="buscarCep(this)">
+            <div class="form-error" id="coCepErr">CEP inválido</div>
+          </div>
+          <div>
+            <label class="form-label">Número *</label>
+            <input class="form-input" id="coNum" type="text" placeholder="123">
+          </div>
         </div>
-        <div>
-          <label class="form-label">Número *</label>
-          <input class="form-input" id="coNum" type="text" placeholder="123">
+        <div class="form-group">
+          <label class="form-label">Endereço completo *</label>
+          <input class="form-input" id="coEnd" type="text" placeholder="Rua, bairro, cidade — UF">
+          <div class="form-error" id="coEndErr">Informe seu endereço</div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Endereço completo *</label>
-        <input class="form-input" id="coEnd" type="text" placeholder="Rua, bairro, cidade — UF">
-        <div class="form-error" id="coEndErr">Informe seu endereço</div>
-      </div>
-      <button class="checkout-pay-btn" id="payBtn" onclick="finalizarPedido()">
-        <div class="spinner"></div>
-        <span class="pay-txt">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          PAGAR AGORA
-        </span>
-      </button>
-      <div class="checkout-security">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Pagamento seguro via Mercado Pago
-      </div>
-      <div class="checkout-pay-icons">
-        <span class="pay-icon">Pix</span>
-        <span class="pay-icon">Cartão</span>
-        <span class="pay-icon">Boleto</span>
-        <span class="pay-icon">Até 12x</span>
+
+        <!-- Forma de pagamento -->
+        <div class="form-section-title">Forma de pagamento</div>
+        <div class="payment-tabs">
+          <button class="ptab active" onclick="switchTab('pix',this)">
+            <span class="ptab-icon">💠</span>PIX
+          </button>
+          <button class="ptab" onclick="switchTab('cartao',this)">
+            <span class="ptab-icon">💳</span>CARTÃO
+          </button>
+          <button class="ptab" onclick="switchTab('boleto',this)">
+            <span class="ptab-icon">🧾</span>BOLETO
+          </button>
+        </div>
+
+        <!-- PIX -->
+        <div class="payment-panel active" id="panel-pix">
+          <div style="font-size:.76rem;font-weight:300;color:rgba(255,255,255,.5);font-family:'Montserrat',sans-serif;line-height:1.7;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:rgba(255,255,255,.02);">
+            <strong style="color:var(--white);display:block;margin-bottom:6px;">✅ Pix — Aprovação imediata</strong>
+            Clique em "Gerar Pix" e escaneie o QR Code ou copie o código. O pagamento é confirmado na hora!
+          </div>
+        </div>
+
+        <!-- CARTÃO -->
+        <div class="payment-panel" id="panel-cartao">
+          <div class="card-field-wrap">
+            <label class="form-label">
+              Número do cartão
+              <div class="card-brands">
+                <span class="card-brand">VISA</span>
+                <span class="card-brand">MC</span>
+                <span class="card-brand">ELO</span>
+              </div>
+            </label>
+            <input class="form-input" id="cardNumber" type="text" placeholder="0000 0000 0000 0000" maxlength="19" oninput="maskCard(this)">
+          </div>
+          <div class="form-row">
+            <div>
+              <label class="form-label">Validade</label>
+              <input class="form-input" id="cardExpiry" type="text" placeholder="MM/AA" maxlength="5" oninput="maskExpiry(this)">
+            </div>
+            <div>
+              <label class="form-label">CVV</label>
+              <input class="form-input" id="cardCvv" type="text" placeholder="123" maxlength="4">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nome no cartão</label>
+            <input class="form-input" id="cardName" type="text" placeholder="NOME COMO NO CARTÃO" style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Parcelamento</label>
+            <select class="installment-select" id="installmentSelect">
+              <option value="1">1x sem juros</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- BOLETO -->
+        <div class="payment-panel" id="panel-boleto">
+          <div class="boleto-box">
+            <div class="boleto-info">
+              🧾 <strong style="color:var(--white);">Boleto Bancário</strong><br>
+              Prazo de compensação: até <strong style="color:var(--white);">3 dias úteis</strong><br>
+              Válido por <strong style="color:var(--white);">3 dias</strong> após a emissão<br>
+              Pague em qualquer banco, lotérica ou app
+            </div>
+            <div class="boleto-warn">
+              ⚠️ O pedido será confirmado apenas após a compensação do boleto.
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão pagar -->
+        <button class="checkout-pay-btn" id="payBtn" onclick="finalizarPedido()">
+          <div class="spinner"></div>
+          <span class="pay-txt" id="payBtnTxt">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            GERAR PIX
+          </span>
+        </button>
+
+        <div class="checkout-security">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Pagamento 100% seguro — processado pelo Mercado Pago
+        </div>
+        <div class="checkout-pay-icons">
+          <span class="pay-icon">Pix</span>
+          <span class="pay-icon">Visa</span>
+          <span class="pay-icon">Master</span>
+          <span class="pay-icon">Elo</span>
+          <span class="pay-icon">Boleto</span>
+        </div>
       </div>
     </div>
+
+    <!-- PIX QR Code screen -->
+    <div id="pixScreen" style="display:none;padding:32px 28px;text-align:center;">
+      <button onclick="backToForm()" style="position:absolute;top:20px;left:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.1rem;">←</button>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--white);margin-bottom:6px;">PAGUE VIA PIX</div>
+      <div style="font-size:.7rem;color:rgba(255,255,255,.4);font-family:'Montserrat',sans-serif;margin-bottom:20px;">Escaneie o QR Code ou copie o código</div>
+      <div class="pix-qr" id="pixQrContainer">
+        <img id="pixQrImg" src="" alt="QR Code PIX">
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:var(--white);margin:12px 0 4px;" id="pixValor"></div>
+      <button class="pix-copy-btn" id="pixCopyBtn" onclick="copyPix()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        COPIAR CÓDIGO PIX
+      </button>
+      <div class="pix-expiry" id="pixExpiry">⏱️ Expira em <span id="pixTimer">10:00</span></div>
+      <div class="pix-info">Após o pagamento, aguarde a confirmação.<br>Você receberá um email com os detalhes do pedido.</div>
+      <div style="margin-top:16px;padding:12px;background:rgba(255,255,255,.04);border-radius:6px;font-family:'Montserrat',sans-serif;font-size:.65rem;color:rgba(255,255,255,.4);">
+        Pedido: <strong id="pixPedidoId" style="color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.08em;"></strong>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<script>
-const WPP = '5563992795579';
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+<script>const WPP = '5563992795579';
 const BACKEND = 'https://backend-frpjn.vercel.app';
+const MP_PUBLIC_KEY = 'APP_USR-29b9f612-0f6f-4f9e-97ee-e0a949cbb651';
+
+// Init Mercado Pago SDK
+const mp = new MercadoPago(MP_PUBLIC_KEY, { locale: 'pt-BR' });
 
 const products = [
   {
@@ -1087,40 +1220,234 @@ function validarForm() {
   return ok;
 }
 
+
+// ── PAYMENT STATE ──
+let activeTab = 'pix';
+let pixTimerInterval = null;
+let currentPedidoId = null;
+
+function switchTab(tab, btn) {
+  activeTab = tab;
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.payment-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  const texts = {pix:'GERAR PIX', cartao:'PAGAR COM CARTAO', boleto:'GERAR BOLETO'};
+  document.getElementById('payBtnTxt').innerHTML = texts[tab];
+}
+
+function maskCpf(input) {
+  let v = input.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  input.value = v;
+}
+function maskCard(input) {
+  let v = input.value.replace(/\D/g,'').slice(0,16);
+  v = v.replace(/(\d{4})/g,'$1 ').trim();
+  input.value = v;
+}
+function maskExpiry(input) {
+  let v = input.value.replace(/\D/g,'').slice(0,4);
+  if (v.length >= 2) v = v.slice(0,2)+'/'+v.slice(2);
+  input.value = v;
+}
+
+function validarForm() {
+  let ok = true;
+  const checks = [
+    ['coNome','coNomeErr', v => v.trim().length >= 3],
+    ['coEmail','coEmailErr', v => v.trim().includes('@') && v.trim().length > 5],
+    ['coCpf','coCpfErr', v => v.replace(/\D/g,'').length === 11],
+    ['coTel','coTelErr', v => v.replace(/\D/g,'').length >= 10],
+    ['coEnd','coEndErr', v => v.trim().length >= 5],
+    ['coCep','coCepErr', v => v.replace(/\D/g,'').length >= 8],
+  ];
+  checks.forEach(([id,errId,fn]) => {
+    const el = document.getElementById(id);
+    if (el && !fn(el.value)) {
+      el.classList.add('error');
+      document.getElementById(errId)?.classList.add('show');
+      ok = false;
+    } else if (el) {
+      el.classList.remove('error');
+      document.getElementById(errId)?.classList.remove('show');
+    }
+  });
+  return ok;
+}
+
 async function finalizarPedido() {
   if (!validarForm()) return;
   const btn = document.getElementById('payBtn');
   btn.disabled = true; btn.classList.add('loading');
+  showPayLoading('Processando...');
+
+  const cliente = {
+    nome:     document.getElementById('coNome').value.trim(),
+    email:    document.getElementById('coEmail').value.trim(),
+    cpf:      document.getElementById('coCpf').value.replace(/\D/g,''),
+    telefone: document.getElementById('coTel').value.replace(/\D/g,''),
+    cep:      document.getElementById('coCep').value.replace(/\D/g,''),
+    endereco: document.getElementById('coEnd').value.trim() + ', ' + (document.getElementById('coNum').value.trim())
+  };
 
   try {
-    const resp = await fetch(`${BACKEND}/criar-preferencia`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        produto: { id: currentProduct.id, nome: currentProduct.name, preco: currentProduct.price },
-        tamanho: selectedSize,
-        cliente: {
-          nome:     document.getElementById('coNome').value.trim(),
-          email:    document.getElementById('coEmail').value.trim(),
-          telefone: document.getElementById('coTel').value.replace(/\D/g,''),
-          cep:      document.getElementById('coCep').value.replace(/\D/g,''),
-          endereco: document.getElementById('coEnd').value.trim() + ', ' + document.getElementById('coNum').value.trim()
-        }
-      })
-    });
-    const data = await resp.json();
-    if (data.init_point) {
-      window.location.href = data.init_point;
-    } else throw new Error(data.erro);
+    if (activeTab === 'pix') await processarPix(cliente);
+    else if (activeTab === 'cartao') await processarCartao(cliente);
+    else await processarBoleto(cliente);
   } catch(err) {
-    console.error('Erro checkout:', err);
-    // Fallback: open WhatsApp
-    if (confirm('Houve um problema com o pagamento online.\nDeseja finalizar o pedido pelo WhatsApp?')) {
+    console.error('Erro:', err);
+    hidePayLoading();
+    if (confirm('Erro ao processar.\nDeseja finalizar pelo WhatsApp?')) {
       window.open(wppLink(currentProduct, selectedSize),'_blank');
       closeCheckout();
     }
-    btn.disabled = false; btn.classList.remove('loading');
   }
 }
+
+async function processarPix(cliente) {
+  showPayLoading('Gerando QR Code PIX...');
+  const resp = await fetch(BACKEND+'/criar-pix', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente})
+  });
+  const data = await resp.json();
+  if (!data.qr_code) throw new Error(data.erro||'Erro PIX');
+  currentPedidoId = data.pedido_id;
+  hidePayLoading();
+  showPixScreen(data);
+}
+
+async function processarCartao(cliente) {
+  showPayLoading('Processando cartao...');
+  const cardNum = document.getElementById('cardNumber').value.replace(/\s/g,'');
+  const expParts = document.getElementById('cardExpiry').value.split('/');
+  const cvv  = document.getElementById('cardCvv').value;
+  const name = document.getElementById('cardName').value.trim();
+  const inst = parseInt(document.getElementById('installmentSelect')?.value)||1;
+  if (!cardNum||!expParts[0]||!cvv||!name) {
+    hidePayLoading(); alert('Preencha os dados do cartao!'); return;
+  }
+  try {
+    const tok = await mp.createCardToken({
+      cardNumber:cardNum, cardholderName:name,
+      cardExpirationMonth:expParts[0], cardExpirationYear:'20'+(expParts[1]||'26'),
+      securityCode:cvv, identificationType:'CPF', identificationNumber:cliente.cpf
+    });
+    const resp = await fetch(BACKEND+'/criar-pagamento-cartao', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente,token:tok.id,installments:inst,payment_method_id:tok.payment_method_id})
+    });
+    const data = await resp.json();
+    hidePayLoading();
+    if (data.status==='approved') showPayStatus('pagamento_aprovado',data.pedido_id);
+    else if (data.status==='in_process') showPayStatus('em_analise',data.pedido_id);
+    else throw new Error('Cartao nao aprovado: '+(data.status_detail||data.status));
+  } catch(e) { throw e; }
+}
+
+async function processarBoleto(cliente) {
+  showPayLoading('Gerando boleto...');
+  const resp = await fetch(BACKEND+'/criar-boleto', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente})
+  });
+  const data = await resp.json();
+  hidePayLoading();
+  if (data.boleto_url) { currentPedidoId=data.pedido_id; showPayStatus('boleto_gerado',data.pedido_id,data.boleto_url); }
+  else throw new Error(data.erro||'Erro boleto');
+}
+
+function showPayLoading(txt) {
+  document.getElementById('payLoadingText').textContent = txt;
+  document.getElementById('payLoading').classList.add('show');
+}
+function hidePayLoading() {
+  document.getElementById('payLoading').classList.remove('show');
+  document.getElementById('payBtn').disabled=false;
+  document.getElementById('payBtn').classList.remove('loading');
+}
+
+function showPixScreen(data) {
+  document.getElementById('checkoutForm').style.display='none';
+  const sc = document.getElementById('pixScreen');
+  sc.style.display='block';
+  if (data.qr_code_base64) document.getElementById('pixQrImg').src='data:image/png;base64,'+data.qr_code_base64;
+  document.getElementById('pixValor').textContent='R$ '+currentProduct.price.toFixed(2).replace('.',',');
+  document.getElementById('pixPedidoId').textContent=data.pedido_id;
+  window._pixCode=data.qr_code;
+  let secs=600; clearInterval(pixTimerInterval);
+  pixTimerInterval=setInterval(()=>{
+    secs--;
+    const m=Math.floor(secs/60).toString().padStart(2,'0');
+    const s=(secs%60).toString().padStart(2,'0');
+    document.getElementById('pixTimer').textContent=m+':'+s;
+    if(secs<=0){clearInterval(pixTimerInterval);document.getElementById('pixExpiry').textContent='PIX expirado.';}
+  },1000);
+  if(data.payment_id) pollPixStatus(data.payment_id);
+}
+
+async function pollPixStatus(payId) {
+  let n=0;
+  const t=setInterval(async()=>{
+    if(++n>60){clearInterval(t);return;}
+    try{
+      const r=await fetch(BACKEND+'/status-pagamento/'+payId);
+      const d=await r.json();
+      if(d.status==='approved'){clearInterval(t);clearInterval(pixTimerInterval);document.getElementById('pixScreen').style.display='none';showPayStatus('pagamento_aprovado',currentPedidoId);}
+    }catch(e){}
+  },10000);
+}
+
+async function copyPix() {
+  try{
+    await navigator.clipboard.writeText(window._pixCode||'');
+    const b=document.getElementById('pixCopyBtn');
+    b.textContent='COPIADO!'; b.classList.add('copied');
+    setTimeout(()=>{b.textContent='COPIAR CODIGO PIX';b.classList.remove('copied');},2000);
+  }catch(e){alert('Copie: '+(window._pixCode||''));}
+}
+
+function backToForm(){
+  document.getElementById('pixScreen').style.display='none';
+  document.getElementById('checkoutForm').style.display='block';
+  clearInterval(pixTimerInterval);
+}
+
+function showPayStatus(tipo, pedidoId, boletoUrl=null) {
+  document.getElementById('checkoutForm').style.display='none';
+  document.getElementById('pixScreen').style.display='none';
+  const configs={
+    pagamento_aprovado:{icon:'pagamento_aprovado',title:'PAGAMENTO APROVADO!',msg:'Seu pedido foi confirmado! Em breve entraremos em contato pelo WhatsApp.'},
+    em_analise:{icon:'em_analise',title:'EM ANALISE',msg:'Seu pagamento esta sendo analisado. Voce recebera um email em breve.'},
+    boleto_gerado:{icon:'boleto_gerado',title:'BOLETO GERADO!',msg:'Seu boleto foi gerado! Valido por 3 dias. Clique abaixo para pagar.'},
+  };
+  const icons_map={'pagamento_aprovado':'pagamento_aprovado','em_analise':'em_analise','boleto_gerado':'boleto_gerado'};
+  const emoji_map={'pagamento_aprovado':'pagamento_aprovado','em_analise':'em_analise','boleto_gerado':'boleto_gerado'};
+  // Simple emoji display
+  const emojiMap={'pagamento_aprovado':'pagamento_aprovado','em_analise':'em_analise','boleto_gerado':'boleto_gerado'};
+  const iconMap={'pagamento_aprovado':'pagamento_aprovado','em_analise':'em_analise','boleto_gerado':'boleto_gerado'};
+  
+  // Use emojis directly
+  const c=configs[tipo]||{icon:'pagamento_aprovado',title:'CONCLUIDO',msg:'Operacao realizada.'};
+  const emojiFor={'pagamento_aprovado':'pagamento_aprovado','em_analise':'em_analise','boleto_gerado':'boleto_gerado'};
+  
+  // Final simple approach
+  const finalEmoji = tipo==='pagamento_aprovado'?'pagamento_aprovado':tipo==='em_analise'?'em_analise':'boleto_gerado';
+
+  document.getElementById('payStatusIcon').textContent = tipo==='pagamento_aprovado'?'APROVADO':tipo==='em_analise'?'EM ANALISE':'BOLETO';
+  document.getElementById('payStatusTitle').textContent=c.title;
+  document.getElementById('payStatusMsg').textContent=c.msg;
+  if(pedidoId){document.getElementById('payStatusPedido').style.display='block';document.getElementById('payStatusNum').textContent=pedidoId;}
+  if(boletoUrl){
+    const a=document.createElement('a');a.href=boletoUrl;a.target='_blank';
+    a.style='display:inline-block;margin-top:12px;font-family:Montserrat,sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#0a0a0a;background:white;padding:12px 24px;border-radius:4px;text-decoration:none;';
+    a.textContent='ABRIR BOLETO';
+    document.getElementById('payStatus').appendChild(a);
+  }
+  document.getElementById('payStatus').classList.add('show');
+}
+
 
 // ── FILTER / SEARCH ──
 let activeFilter = 'all', activeSearch = '';
