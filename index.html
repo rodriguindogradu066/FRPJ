@@ -82,12 +82,10 @@ img{display:block;}
 /* ── HERO ── */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:134px 40px 80px;
-  position:relative;
-  overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;
+  align-items:center;
+  padding:134px 60px 0;
+  position:relative;overflow:hidden;
   background:var(--black);
 }
 .hero-bg{
@@ -439,7 +437,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 @media(max-width:640px){
   .nav{padding:0 20px;}
   .section{padding:64px 20px;}
-  .hero{padding:134px 20px 80px;}
+  .hero{padding:134px 20px 0;grid-template-columns:1fr;}
   .product-modal{grid-template-columns:1fr;max-height:95vh;}
   .product-modal-imgs{border-radius:8px 8px 0 0;}
   .pm-buy-btn,.pm-wpp-btn{padding:14px;}
@@ -480,6 +478,52 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .copa-glow-g{width:500px;height:500px;background:rgba(0,156,59,.055);top:-80px;left:-120px;animation:copaGlow 5s ease-in-out infinite alternate;}
 .copa-glow-y{width:350px;height:350px;background:rgba(255,223,0,.035);bottom:60px;right:-80px;animation:copaGlow 6s ease-in-out infinite alternate-reverse;}
 @keyframes copaGlow{from{opacity:.5;}to{opacity:1;}}
+/* ── HERO COPA 2026 LAYOUT ── */
+.hero-map{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 72% 50%,rgba(201,162,39,.05) 0%,transparent 52%),
+             radial-gradient(ellipse at 18% 40%,rgba(0,156,59,.04) 0%,transparent 42%),
+             radial-gradient(ellipse at 50% 85%,rgba(201,162,39,.03) 0%,transparent 32%);}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;z-index:2;padding-bottom:28px;}
+.hero-right{display:flex;align-items:center;justify-content:center;z-index:2;align-self:stretch;min-height:480px;}
+.hero-brand{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.hero-brand-logo{width:42px;height:42px;object-fit:contain;}
+.hero-brand-name{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.12em;color:var(--white);}
+.hero-brand-name span{color:rgba(255,255,255,.3);}
+.hero-brand-sep{font-family:'Montserrat',sans-serif;font-size:.5rem;font-weight:600;letter-spacing:.35em;color:rgba(255,255,255,.28);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.hero-brand-sep::before,.hero-brand-sep::after{content:'';width:22px;height:1px;background:rgba(255,255,255,.18);}
+.hero-copa-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;color:#c9a227;display:flex;align-items:center;gap:8px;margin-bottom:10px;animation:fadeUp .6s .1s both;}
+.hero-main-top{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5.2vw,4.8rem);letter-spacing:.04em;color:var(--white);line-height:1;margin:0;animation:fadeUp .6s .2s both;}
+.hero-main-oferta{font-family:'Montserrat',sans-serif;font-size:clamp(2.6rem,6.2vw,5.8rem);font-weight:900;font-style:italic;color:#c9a227;line-height:.95;letter-spacing:-.02em;margin-bottom:24px;position:relative;display:inline-block;animation:fadeUp .6s .28s both;}
+.hero-main-oferta::before{content:'';position:absolute;left:-6px;right:-6px;bottom:8px;height:11px;background:#009c3b;opacity:.4;border-radius:2px;transform:rotate(-.4deg) skewX(-2deg);z-index:-1;}
+.hero-dryfit{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:10px 20px;margin-bottom:28px;background:rgba(255,255,255,.025);animation:fadeUp .6s .34s both;}
+.hero-dryfit-icon{color:#009c3b;display:flex;flex-shrink:0;}
+.hero-dryfit-text{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;color:var(--white);text-transform:uppercase;}
+.hero-dryfit-text span{color:#c9a227;}
+.hero-dryfit-sub{font-family:'Montserrat',sans-serif;font-size:.5rem;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+.hero-features{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:32px;width:100%;animation:fadeUp .6s .4s both;}
+.hero-feat{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;}
+.hero-feat-icon{width:42px;height:42px;border:1px solid rgba(0,156,59,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#009c3b;margin-bottom:4px;flex-shrink:0;}
+.hero-feat-name{font-family:'Montserrat',sans-serif;font-size:.54rem;font-weight:700;letter-spacing:.1em;color:var(--white);text-transform:uppercase;}
+.hero-feat-sub{font-family:'Poppins',sans-serif;font-size:.48rem;font-weight:300;color:rgba(255,255,255,.36);line-height:1.4;}
+.btn-wpp-hero{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:var(--wpp);border:none;padding:16px 28px;border-radius:var(--radius);transition:all var(--tr);cursor:pointer;text-decoration:none;}
+.btn-wpp-hero:hover{filter:brightness(1.1);transform:translateY(-2px);}
+.hero-img-slot{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:0 20px;}
+.hero-img-slot>img{max-width:100%;max-height:70vh;object-fit:contain;filter:drop-shadow(0 24px 64px rgba(0,0,0,.85));animation:fadeUp .8s .15s both;}
+.hero-img-placeholder{width:100%;height:100%;min-height:480px;border:1px dashed rgba(255,255,255,.09);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:rgba(255,255,255,.16);font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;}
+.hero-seals{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.018);}
+.hero-seal{display:flex;align-items:center;gap:14px;padding:18px 32px;border-right:1px solid rgba(255,255,255,.07);}
+.hero-seal:last-child{border-right:none;}
+.hero-seal-icon{color:#c9a227;flex-shrink:0;}
+.hero-seal-name{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--white);text-transform:uppercase;}
+.hero-seal-sub{font-family:'Montserrat',sans-serif;font-size:.5rem;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px;}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:134px 28px 0;}
+  .hero-right{display:none;}
+  .hero-features{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .hero-seals{grid-template-columns:1fr;}
+  .hero-seal{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}
+  .hero-seal:last-child{border-bottom:none;}
+}
 </style>
 </head>
 <body>
@@ -536,23 +580,109 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   <a href="https://wa.me/5563992795579" target="_blank" onclick="toggleMobileNav()">WhatsApp</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO COPA 2026 -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-map"></div>
   <div class="copa-glow copa-glow-g"></div>
   <div class="copa-glow copa-glow-y"></div>
-  <div class="hero-tag">Nova Coleção 2025</div>
-  <img class="hero-logo-big" src="data:image/png;base64,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" alt="FRPJSTORE.BR">
-  <h1 class="hero-title">FRPJSTORE</h1>
-  <div class="hero-title-sub">STREETWEAR PREMIUM</div>
-  <p class="hero-desc">Qualidade, conforto e autenticidade em cada peça. Streetwear brasileiro feito para durar.</p>
-  <div class="hero-btns">
-    <a href="#produtos" class="btn-primary">VER COLEÇÃO</a>
-    <a href="https://wa.me/5563992795579" target="_blank" class="btn-outline">FALAR NO ZAP</a>
+  <!-- COLUNA ESQUERDA -->
+  <div class="hero-left">
+    <div class="hero-brand">
+      <img id="heroBrandLogo" class="hero-brand-logo" src="data:image/png;base64,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" alt="FRPJSTORE">
+      <script>document.getElementById('heroBrandLogo').src=document.querySelector('.nav-logo img').src;</script>
+      <div>
+        <div class="hero-brand-name">FRPJSTORE<span>.BR</span></div>
+      </div>
+    </div>
+    <div class="hero-brand-sep">STREETWEAR PREMIUM</div>
+    <div class="hero-copa-label">★ COLEÇÃO COPA DO MUNDO 2026 ★</div>
+    <h1 class="hero-main-top">ESTÁ EM</h1>
+    <div class="hero-main-oferta">OFERTA!</div>
+    <div class="hero-dryfit">
+      <div class="hero-dryfit-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+      </div>
+      <div>
+        <div class="hero-dryfit-text">+ MODELO <span>DRY FIT</span> PREMIUM</div>
+        <div class="hero-dryfit-sub">Leve. Tecnológico. Feito para durar.</div>
+      </div>
+    </div>
+    <div class="hero-features">
+      <div class="hero-feat">
+        <div class="hero-feat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/><path d="M2 13c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/><path d="M2 18c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/></svg>
+        </div>
+        <div class="hero-feat-name">Tecido Dry Fit</div>
+        <div class="hero-feat-sub">Leve, respirável e de secagem rápida</div>
+      </div>
+      <div class="hero-feat">
+        <div class="hero-feat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="hero-feat-name">Conforto Total</div>
+        <div class="hero-feat-sub">Ajuste perfeito para o dia a dia</div>
+      </div>
+      <div class="hero-feat">
+        <div class="hero-feat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="hero-feat-name">Durabilidade</div>
+        <div class="hero-feat-sub">Alta qualidade que acompanha você</div>
+      </div>
+      <div class="hero-feat">
+        <div class="hero-feat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h8M5 12h6M5 16h8"/><path d="M15 12c0 3 2 5 5 5V7c-3 0-5 2-5 5z"/></svg>
+        </div>
+        <div class="hero-feat-name">Não Amassa</div>
+        <div class="hero-feat-sub">Praticidade e estilo em qualquer lugar</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#produtos" class="btn-primary">VER COLEÇÃO →</a>
+      <a href="https://wa.me/5563992795579" target="_blank" class="btn-wpp-hero">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        FALAR NO ZAP
+      </a>
+    </div>
   </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
+  <!-- COLUNA DIREITA -->
+  <div class="hero-right">
+    <div class="hero-img-slot" id="heroImgSlot">
+      <div class="hero-img-placeholder">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Imagem do produto</span>
+      </div>
+    </div>
+  </div>
+  <!-- SELOS DO HERO -->
+  <div class="hero-seals">
+    <div class="hero-seal">
+      <div class="hero-seal-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      </div>
+      <div>
+        <div class="hero-seal-name">Copa do Mundo 2026</div>
+        <div class="hero-seal-sub">Edição Especial</div>
+      </div>
+    </div>
+    <div class="hero-seal">
+      <div class="hero-seal-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <div class="hero-seal-name">Qualidade Premium</div>
+        <div class="hero-seal-sub">Acabamento de alto nível</div>
+      </div>
+    </div>
+    <div class="hero-seal">
+      <div class="hero-seal-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <div class="hero-seal-name">Store Oficial</div>
+        <div class="hero-seal-sub">Streetwear Brasileiro</div>
+      </div>
+    </div>
   </div>
 </section>
 
