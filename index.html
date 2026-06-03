@@ -518,6 +518,15 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .hero-seal-icon{color:#c9a227;flex-shrink:0;}
 .hero-seal-name{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--white);text-transform:uppercase;}
 .hero-seal-sub{font-family:'Montserrat',sans-serif;font-size:.5rem;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px;}
+/* ── CHECKOUT FRETE ── */
+.checkout-summary{padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);}
+.co-sum-row{display:flex;justify-content:space-between;align-items:center;font-family:'Montserrat',sans-serif;font-size:.68rem;color:rgba(255,255,255,.45);margin-bottom:7px;}
+.co-sum-row:last-of-type{margin-bottom:0;}
+.co-sum-total-row{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.09);}
+.co-sum-total-label{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;color:var(--white);}
+.co-sum-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.06em;color:var(--white);}
+.co-frete-gratis{color:#009c3b;font-weight:700;font-size:.68rem;}
+.co-frete-msg{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:600;color:rgba(0,156,59,.75);display:flex;align-items:center;gap:5px;margin-top:10px;}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding:134px 28px 0;}
   .hero-right{display:none;}
@@ -871,6 +880,22 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
           <div class="checkout-product-detail" id="coDetail"></div>
         </div>
         <div class="checkout-product-price" id="coPrice"></div>
+      </div>
+      <!-- RESUMO FRETE -->
+      <div class="checkout-summary">
+        <div class="co-sum-row">
+          <span>Subtotal</span>
+          <span id="coSubtotal"></span>
+        </div>
+        <div class="co-sum-row">
+          <span>Frete</span>
+          <span id="coFrete"></span>
+        </div>
+        <div class="co-sum-total-row">
+          <span class="co-sum-total-label">Total</span>
+          <span class="co-sum-total-val" id="coTotal"></span>
+        </div>
+        <div class="co-frete-msg" id="coFreteMsg">🚚 Frete grátis para compras acima de R$ 180,00</div>
       </div>
       <div class="checkout-form">
 
@@ -1365,6 +1390,23 @@ function openCheckout() {
   document.getElementById('coDetail').textContent = `Tamanho: ${selectedSize} · ${currentProduct.cor}`;
   document.getElementById('coPrice').textContent = priceDisplay(currentProduct);
 
+  // Cálculo de frete
+  const subtotal = currentProduct.price;
+  freteAtual = subtotal >= 180 ? 0 : 25;
+  const totalComFrete = subtotal + freteAtual;
+  const fmt = v => 'R$ ' + v.toFixed(2).replace('.',',');
+  document.getElementById('coSubtotal').textContent = fmt(subtotal);
+  const freteEl = document.getElementById('coFrete');
+  if (freteAtual === 0) {
+    freteEl.textContent = 'GRÁTIS';
+    freteEl.className = 'co-frete-gratis';
+  } else {
+    freteEl.textContent = fmt(freteAtual);
+    freteEl.className = '';
+  }
+  document.getElementById('coTotal').textContent = fmt(totalComFrete);
+  document.getElementById('coFreteMsg').style.display = freteAtual > 0 ? 'flex' : 'none';
+
   // Reset form
   ['coNome','coEmail','coTel','coCep','coNum','coEnd'].forEach(id => {
     const el = document.getElementById(id);
@@ -1424,6 +1466,7 @@ function validarForm() {
 
 // ── PAYMENT STATE ──
 let activeTab = 'pix';
+let freteAtual = 0;
 let pixTimerInterval = null;
 let currentPedidoId = null;
 
@@ -1510,7 +1553,7 @@ async function processarPix(cliente) {
   showPayLoading('Gerando QR Code PIX...');
   const resp = await fetch(BACKEND+'/criar-pix', {
     method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente})
+    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price,frete:freteAtual,total:currentProduct.price+freteAtual},tamanho:selectedSize,cliente})
   });
   const data = await resp.json();
   if (!data.qr_code) throw new Error(data.erro||'Erro PIX');
@@ -1537,7 +1580,7 @@ async function processarCartao(cliente) {
     });
     const resp = await fetch(BACKEND+'/criar-pagamento-cartao', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente,token:tok.id,installments:inst,payment_method_id:tok.payment_method_id})
+      body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price,frete:freteAtual,total:currentProduct.price+freteAtual},tamanho:selectedSize,cliente,token:tok.id,installments:inst,payment_method_id:tok.payment_method_id})
     });
     const data = await resp.json();
     hidePayLoading();
@@ -1551,7 +1594,7 @@ async function processarBoleto(cliente) {
   showPayLoading('Gerando boleto...');
   const resp = await fetch(BACKEND+'/criar-boleto', {
     method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price},tamanho:selectedSize,cliente})
+    body: JSON.stringify({produto:{id:currentProduct.id,nome:currentProduct.name,preco:currentProduct.price,frete:freteAtual,total:currentProduct.price+freteAtual},tamanho:selectedSize,cliente})
   });
   const data = await resp.json();
   hidePayLoading();
