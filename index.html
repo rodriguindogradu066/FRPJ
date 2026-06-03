@@ -1455,7 +1455,6 @@ function openCheckout() {
   const subtotal = cartMode ? cartSubtotalAmt() : currentProduct.price;
   freteAtual = subtotal >= 180 ? 0 : 25;
   const totalComFrete = subtotal + freteAtual;
-  const fmt = v => 'R$ ' + v.toFixed(2).replace('.',',');
   document.getElementById('coSubtotal').textContent = fmt(subtotal);
   const freteEl = document.getElementById('coFrete');
   if (freteAtual === 0) {
