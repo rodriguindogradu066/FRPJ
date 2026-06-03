@@ -480,6 +480,11 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .copa-glow-g{width:500px;height:500px;background:rgba(0,156,59,.055);top:-80px;left:-120px;animation:copaGlow 5s ease-in-out infinite alternate;}
 .copa-glow-y{width:350px;height:350px;background:rgba(255,223,0,.035);bottom:60px;right:-80px;animation:copaGlow 6s ease-in-out infinite alternate-reverse;}
 @keyframes copaGlow{from{opacity:.5;}to{opacity:1;}}
+/* hex soccer pattern on hero-bg — SVG tile: pointy-top hex, 34×60px unit cell */
+.hero-bg{background:
+  radial-gradient(ellipse at 20% 50%,rgba(255,255,255,.03) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.02) 0%,transparent 40%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='60'%3E%3Cpolygon points='17,0 34,10 34,30 17,40 0,30 0,10' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='1.5'/%3E%3Cpolygon points='0,30 17,40 17,60 0,70 -17,60 -17,40' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='1.5'/%3E%3Cpolygon points='34,30 51,40 51,60 34,70 17,60 17,40' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='1.5'/%3E%3C/svg%3E") center/34px 60px repeat;}
 </style>
 </head>
 <body>
