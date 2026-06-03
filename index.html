@@ -30,7 +30,7 @@ img{display:block;}
 
 /* ── NAVBAR ── */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:34px;left:0;right:0;z-index:100;
   height:64px;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 40px;
@@ -85,7 +85,7 @@ img{display:block;}
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;
-  padding:100px 40px 80px;
+  padding:134px 40px 80px;
   position:relative;
   overflow:hidden;
   background:var(--black);
@@ -439,7 +439,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 @media(max-width:640px){
   .nav{padding:0 20px;}
   .section{padding:64px 20px;}
-  .hero{padding:100px 20px 80px;}
+  .hero{padding:134px 20px 80px;}
   .product-modal{grid-template-columns:1fr;max-height:95vh;}
   .product-modal-imgs{border-radius:8px 8px 0 0;}
   .pm-buy-btn,.pm-wpp-btn{padding:14px;}
@@ -454,9 +454,55 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 }
 .pix-qr{display:flex;justify-content:center;align-items:center;margin:0 auto 16px;width:200px;height:200px;background:#fff;border-radius:10px;padding:8px;}
 .pix-qr img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* ── COPA DO MUNDO 2026 ── */
+.copa-banner{position:fixed;top:0;left:0;right:0;z-index:102;height:34px;background:#009c3b;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:2px solid #FFDF00;}
+.copa-marquee{display:flex;width:max-content;animation:copaMov 26s linear infinite;}
+.copa-marquee-item{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.2em;color:#FFDF00;padding:0 32px;white-space:nowrap;display:flex;align-items:center;gap:28px;}
+.copa-marquee-item::after{content:'⚽';font-size:.65rem;}
+@keyframes copaMov{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.copa-confetti{position:fixed;top:34px;left:0;right:0;bottom:0;pointer-events:none;z-index:1;overflow:hidden;}
+.copa-confetti span{position:absolute;display:block;animation:cfall linear infinite;}
+.copa-confetti span:nth-child(odd){border-radius:50%;}
+.copa-confetti span:nth-child(1){left:4%;width:8px;height:8px;background:#009c3b;animation-duration:7s;animation-delay:0s;}
+.copa-confetti span:nth-child(2){left:12%;width:6px;height:6px;background:#FFDF00;animation-duration:8.5s;animation-delay:1s;}
+.copa-confetti span:nth-child(3){left:22%;width:10px;height:5px;background:#009c3b;animation-duration:6s;animation-delay:2.1s;}
+.copa-confetti span:nth-child(4){left:33%;width:7px;height:7px;background:#FFDF00;animation-duration:9s;animation-delay:.4s;}
+.copa-confetti span:nth-child(5){left:45%;width:5px;height:9px;background:#fff;animation-duration:7s;animation-delay:2.5s;opacity:.15;}
+.copa-confetti span:nth-child(6){left:55%;width:9px;height:6px;background:#009c3b;animation-duration:8s;animation-delay:1.3s;}
+.copa-confetti span:nth-child(7){left:66%;width:6px;height:6px;background:#FFDF00;animation-duration:5.5s;animation-delay:3.2s;}
+.copa-confetti span:nth-child(8){left:75%;width:8px;height:8px;background:#009c3b;animation-duration:10s;animation-delay:.7s;}
+.copa-confetti span:nth-child(9){left:85%;width:5px;height:5px;background:#FFDF00;animation-duration:7.5s;animation-delay:1.8s;}
+.copa-confetti span:nth-child(10){left:93%;width:7px;height:7px;background:#fff;animation-duration:8s;animation-delay:3.7s;opacity:.12;}
+@keyframes cfall{0%{transform:translateY(-30px) rotate(0deg);opacity:.9;}85%{opacity:.5;}100%{transform:translateY(100vh) rotate(540deg);opacity:0;}}
+.badge-copa{background:linear-gradient(135deg,#009c3b,#007a2f);color:#FFDF00;border:1px solid rgba(255,223,0,.55);}
+.copa-glow{position:absolute;pointer-events:none;border-radius:50%;filter:blur(100px);}
+.copa-glow-g{width:500px;height:500px;background:rgba(0,156,59,.055);top:-80px;left:-120px;animation:copaGlow 5s ease-in-out infinite alternate;}
+.copa-glow-y{width:350px;height:350px;background:rgba(255,223,0,.035);bottom:60px;right:-80px;animation:copaGlow 6s ease-in-out infinite alternate-reverse;}
+@keyframes copaGlow{from{opacity:.5;}to{opacity:1;}}
 </style>
 </head>
 <body>
+
+<!-- COPA 2026 BANNER -->
+<div class="copa-banner" aria-label="Coleção Copa do Mundo 2026">
+  <div class="copa-marquee">
+    <span class="copa-marquee-item">🇧🇷 COLEÇÃO COPA DO MUNDO 2026</span>
+    <span class="copa-marquee-item">FRPJSTORE.BR</span>
+    <span class="copa-marquee-item">🏆 BRASIL 2026</span>
+    <span class="copa-marquee-item">STREETWEAR COPA</span>
+    <span class="copa-marquee-item">🇧🇷 COLEÇÃO COPA DO MUNDO 2026</span>
+    <span class="copa-marquee-item">FRPJSTORE.BR</span>
+    <span class="copa-marquee-item">🏆 BRASIL 2026</span>
+    <span class="copa-marquee-item">STREETWEAR COPA</span>
+  </div>
+</div>
+
+<!-- CONFETTI COPA -->
+<div class="copa-confetti" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="navbar">
@@ -493,6 +539,8 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="copa-glow copa-glow-g"></div>
+  <div class="copa-glow copa-glow-y"></div>
   <div class="hero-tag">Nova Coleção 2025</div>
   <img class="hero-logo-big" src="data:image/png;base64,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" alt="FRPJSTORE.BR">
   <h1 class="hero-title">FRPJSTORE</h1>
@@ -1074,6 +1122,7 @@ function renderProducts(list) {
         <img class="img-back"  src="${p.back}"  alt="${p.name} verso" loading="lazy">
       </div>
       ${p.badge ? `<span class="pcard-badge badge-${p.badge.toLowerCase()}">${p.badge}</span>` : ''}
+      <span class="pcard-badge badge-copa" style="top:16px;right:16px;left:auto;">⚽ COPA 2026</span>
       <div class="pcard-overlay">
         <button class="pcard-buy" onclick="event.stopPropagation();openProduct(${p.id})">VER PRODUTO</button>
       </div>
