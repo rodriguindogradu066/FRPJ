@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRPJSTORE.BR — Streetwear Premium</title>
+<title>Flow State — Roupas para quem vive no próprio fluxo.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -30,7 +30,7 @@ img{display:block;}
 
 /* ── NAVBAR ── */
 .nav{
-  position:fixed;top:34px;left:0;right:0;z-index:100;
+  position:fixed;top:30px;left:0;right:0;z-index:100;
   height:64px;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 40px;
@@ -84,11 +84,12 @@ img{display:block;}
   min-height:100vh;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;
   align-items:center;
-  padding:134px 60px 0;
+  padding:124px 60px 0;
   position:relative;overflow:hidden;
   background:
-    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url('ChatGPT Image 3 de jun. de 2026, 20_17_47.png') center/cover no-repeat;
+    radial-gradient(ellipse at 65% 40%, rgba(123,47,190,.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 70%, rgba(123,47,190,.08) 0%, transparent 45%),
+    var(--black);
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -144,11 +145,11 @@ img{display:block;}
 .btn-primary{
   font-family:'Montserrat',sans-serif;
   font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--black);background:var(--white);
+  color:var(--white);background:#7B2FBE;
   border:none;padding:16px 36px;border-radius:var(--radius);
   transition:all var(--tr);
 }
-.btn-primary:hover{background:var(--gray7);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.1);}
+.btn-primary:hover{background:#6a28a8;transform:translateY(-2px);box-shadow:0 8px 32px rgba(123,47,190,.4);}
 .btn-outline{
   font-family:'Montserrat',sans-serif;
   font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
@@ -439,7 +440,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 @media(max-width:640px){
   .nav{padding:0 20px;}
   .section{padding:64px 20px;}
-  .hero{padding:134px 20px 0;grid-template-columns:1fr;}
+  .hero{padding:124px 20px 0;grid-template-columns:1fr;}
   .product-modal{grid-template-columns:1fr;max-height:95vh;}
   .product-modal-imgs{border-radius:8px 8px 0 0;}
   .pm-buy-btn,.pm-wpp-btn{padding:14px;}
@@ -456,34 +457,37 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .pix-qr img{width:100%;height:100%;object-fit:contain;display:block;}
 
 /* ── COPA DO MUNDO 2026 ── */
-.copa-banner{position:fixed;top:0;left:0;right:0;z-index:102;height:34px;background:#009c3b;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:2px solid #FFDF00;}
+.copa-banner{position:fixed;top:0;left:0;right:0;z-index:102;height:30px;
+  background:linear-gradient(90deg,#0a0a0a 0%,#111 30%,#0a2a0a 50%,#111 70%,#0a0a0a 100%);
+  border-bottom:1px solid rgba(255,223,0,.25);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .copa-marquee{display:flex;width:max-content;animation:copaMov 26s linear infinite;}
 .copa-marquee-item{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.2em;color:#FFDF00;padding:0 32px;white-space:nowrap;display:flex;align-items:center;gap:28px;}
 .copa-marquee-item::after{content:'⚽';font-size:.65rem;}
 @keyframes copaMov{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.copa-confetti{position:fixed;top:34px;left:0;right:0;bottom:0;pointer-events:none;z-index:1;overflow:hidden;}
+.copa-confetti{display:none;}
 .copa-confetti span{position:absolute;display:block;animation:cfall linear infinite;}
 .copa-confetti span:nth-child(odd){border-radius:50%;}
-.copa-confetti span:nth-child(1){left:4%;width:8px;height:8px;background:#009c3b;animation-duration:7s;animation-delay:0s;}
+.copa-confetti span:nth-child(1){left:4%;width:8px;height:8px;background:#7B2FBE;animation-duration:7s;animation-delay:0s;}
 .copa-confetti span:nth-child(2){left:12%;width:6px;height:6px;background:#FFDF00;animation-duration:8.5s;animation-delay:1s;}
-.copa-confetti span:nth-child(3){left:22%;width:10px;height:5px;background:#009c3b;animation-duration:6s;animation-delay:2.1s;}
+.copa-confetti span:nth-child(3){left:22%;width:10px;height:5px;background:#7B2FBE;animation-duration:6s;animation-delay:2.1s;}
 .copa-confetti span:nth-child(4){left:33%;width:7px;height:7px;background:#FFDF00;animation-duration:9s;animation-delay:.4s;}
 .copa-confetti span:nth-child(5){left:45%;width:5px;height:9px;background:#fff;animation-duration:7s;animation-delay:2.5s;opacity:.15;}
-.copa-confetti span:nth-child(6){left:55%;width:9px;height:6px;background:#009c3b;animation-duration:8s;animation-delay:1.3s;}
+.copa-confetti span:nth-child(6){left:55%;width:9px;height:6px;background:#7B2FBE;animation-duration:8s;animation-delay:1.3s;}
 .copa-confetti span:nth-child(7){left:66%;width:6px;height:6px;background:#FFDF00;animation-duration:5.5s;animation-delay:3.2s;}
-.copa-confetti span:nth-child(8){left:75%;width:8px;height:8px;background:#009c3b;animation-duration:10s;animation-delay:.7s;}
+.copa-confetti span:nth-child(8){left:75%;width:8px;height:8px;background:#7B2FBE;animation-duration:10s;animation-delay:.7s;}
 .copa-confetti span:nth-child(9){left:85%;width:5px;height:5px;background:#FFDF00;animation-duration:7.5s;animation-delay:1.8s;}
 .copa-confetti span:nth-child(10){left:93%;width:7px;height:7px;background:#fff;animation-duration:8s;animation-delay:3.7s;opacity:.12;}
 @keyframes cfall{0%{transform:translateY(-30px) rotate(0deg);opacity:.9;}85%{opacity:.5;}100%{transform:translateY(100vh) rotate(540deg);opacity:0;}}
-.badge-copa{background:linear-gradient(135deg,#009c3b,#007a2f);color:#FFDF00;border:1px solid rgba(255,223,0,.55);}
+.badge-copa{background:linear-gradient(135deg,#0a5c1e,#007a2f);color:#FFDF00;border:1px solid rgba(255,223,0,.55);}
 .copa-glow{position:absolute;pointer-events:none;border-radius:50%;filter:blur(100px);}
-.copa-glow-g{width:500px;height:500px;background:rgba(0,156,59,.055);top:-80px;left:-120px;animation:copaGlow 5s ease-in-out infinite alternate;}
-.copa-glow-y{width:350px;height:350px;background:rgba(255,223,0,.035);bottom:60px;right:-80px;animation:copaGlow 6s ease-in-out infinite alternate-reverse;}
+.copa-glow-g{width:500px;height:500px;background:rgba(0,120,40,.06);top:-80px;left:-120px;animation:copaGlow 5s ease-in-out infinite alternate;}
+.copa-glow-y{width:350px;height:350px;background:rgba(255,223,0,.04);bottom:60px;right:-80px;animation:copaGlow 6s ease-in-out infinite alternate-reverse;}
 @keyframes copaGlow{from{opacity:.5;}to{opacity:1;}}
 /* ── HERO COPA 2026 LAYOUT ── */
 .hero-map{position:absolute;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse at 72% 50%,rgba(201,162,39,.05) 0%,transparent 52%),
-             radial-gradient(ellipse at 18% 40%,rgba(0,156,59,.04) 0%,transparent 42%),
+             radial-gradient(ellipse at 18% 40%,rgba(123,47,190,.04) 0%,transparent 42%),
              radial-gradient(ellipse at 50% 85%,rgba(201,162,39,.03) 0%,transparent 32%);}
 .hero-left{display:flex;flex-direction:column;align-items:flex-start;z-index:2;padding-bottom:28px;}
 .hero-right{display:flex;align-items:center;justify-content:center;z-index:2;align-self:stretch;min-height:480px;}
@@ -496,15 +500,15 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .hero-copa-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;color:#c9a227;display:flex;align-items:center;gap:8px;margin-bottom:10px;animation:fadeUp .6s .1s both;}
 .hero-main-top{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5.2vw,4.8rem);letter-spacing:.04em;color:var(--white);line-height:1;margin:0;animation:fadeUp .6s .2s both;}
 .hero-main-oferta{font-family:'Montserrat',sans-serif;font-size:clamp(2.6rem,6.2vw,5.8rem);font-weight:900;font-style:italic;color:#c9a227;line-height:.95;letter-spacing:-.02em;margin-bottom:24px;position:relative;display:inline-block;animation:fadeUp .6s .28s both;}
-.hero-main-oferta::before{content:'';position:absolute;left:-6px;right:-6px;bottom:8px;height:11px;background:#009c3b;opacity:.4;border-radius:2px;transform:rotate(-.4deg) skewX(-2deg);z-index:-1;}
+.hero-main-oferta::before{content:'';position:absolute;left:-6px;right:-6px;bottom:8px;height:11px;background:#7B2FBE;opacity:.4;border-radius:2px;transform:rotate(-.4deg) skewX(-2deg);z-index:-1;}
 .hero-dryfit{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:10px 20px;margin-bottom:28px;background:rgba(255,255,255,.025);animation:fadeUp .6s .34s both;}
-.hero-dryfit-icon{color:#009c3b;display:flex;flex-shrink:0;}
+.hero-dryfit-icon{color:#7B2FBE;display:flex;flex-shrink:0;}
 .hero-dryfit-text{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;color:var(--white);text-transform:uppercase;}
 .hero-dryfit-text span{color:#c9a227;}
 .hero-dryfit-sub{font-family:'Montserrat',sans-serif;font-size:.5rem;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
 .hero-features{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:32px;width:100%;animation:fadeUp .6s .4s both;}
 .hero-feat{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;}
-.hero-feat-icon{width:42px;height:42px;border:1px solid rgba(0,156,59,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#009c3b;margin-bottom:4px;flex-shrink:0;}
+.hero-feat-icon{width:42px;height:42px;border:1px solid rgba(123,47,190,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7B2FBE;margin-bottom:4px;flex-shrink:0;}
 .hero-feat-name{font-family:'Montserrat',sans-serif;font-size:.54rem;font-weight:700;letter-spacing:.1em;color:var(--white);text-transform:uppercase;}
 .hero-feat-sub{font-family:'Poppins',sans-serif;font-size:.48rem;font-weight:300;color:rgba(255,255,255,.36);line-height:1.4;}
 .btn-wpp-hero{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:var(--wpp);border:none;padding:16px 28px;border-radius:var(--radius);transition:all var(--tr);cursor:pointer;text-decoration:none;}
@@ -547,17 +551,17 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .cart-item-remove:hover{color:#ff6b6b;}
 .cart-footer{flex-shrink:0;border-top:1px solid rgba(255,255,255,.07);padding:18px 24px;background:rgba(255,255,255,.015);}
 .cart-footer-row{display:flex;justify-content:space-between;align-items:center;font-family:'Montserrat',sans-serif;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:6px;}
-.cart-frete-free{color:#009c3b;font-weight:700;}
+.cart-frete-free{color:#22a84a;font-weight:700;}
 .cart-footer-total{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:4px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:16px;}
 .cart-footer-total-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:var(--white);}
 .cart-footer-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:var(--white);}
 .cart-checkout-btn{width:100%;font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--black);background:var(--white);border:none;padding:15px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:8px;transition:all var(--tr);}
 .cart-checkout-btn:hover{background:var(--gray7);transform:translateY(-1px);}
 .cart-checkout-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.25);cursor:not-allowed;transform:none;}
-.cart-frete-hint{font-family:'Montserrat',sans-serif;font-size:.52rem;color:rgba(0,156,59,.6);text-align:center;margin-top:10px;}
+.cart-frete-hint{font-family:'Montserrat',sans-serif;font-size:.52rem;color:rgba(123,47,190,.6);text-align:center;margin-top:10px;}
 .pm-cart-btn{width:100%;margin-bottom:10px;font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:transparent;border:1.5px solid rgba(255,255,255,.22);padding:13px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:8px;transition:all var(--tr);}
 .pm-cart-btn:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.04);}
-.pm-cart-btn.added{border-color:#009c3b;color:#009c3b;}
+.pm-cart-btn.added{border-color:#7B2FBE;color:#7B2FBE;}
 .pcard-cart{width:36px;height:36px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--white);transition:all var(--tr);margin-right:4px;}
 .pcard-cart:hover{background:var(--white);color:var(--black);}
 /* ── CHECKOUT FRETE ── */
@@ -567,10 +571,10 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 .co-sum-total-row{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.09);}
 .co-sum-total-label{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;color:var(--white);}
 .co-sum-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.06em;color:var(--white);}
-.co-frete-gratis{color:#009c3b;font-weight:700;font-size:.68rem;}
-.co-frete-msg{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:600;color:rgba(0,156,59,.75);display:flex;align-items:center;gap:5px;margin-top:10px;}
+.co-frete-gratis{color:#22a84a;font-weight:700;font-size:.68rem;}
+.co-frete-msg{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:600;color:rgba(123,47,190,.8);display:flex;align-items:center;gap:5px;margin-top:10px;}
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:134px 28px 0;}
+  .hero{grid-template-columns:1fr;padding:124px 28px 0;}
   .hero-right{display:none;}
   .hero-features{grid-template-columns:repeat(2,1fr);gap:12px;}
   .hero-seals{grid-template-columns:1fr;}
@@ -581,31 +585,25 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 </head>
 <body>
 
-<!-- COPA 2026 BANNER -->
-<div class="copa-banner" aria-label="Coleção Copa do Mundo 2026">
+<!-- COPA BANNER -->
+<div class="copa-banner">
   <div class="copa-marquee">
-    <span class="copa-marquee-item">🇧🇷 COLEÇÃO COPA DO MUNDO 2026</span>
-    <span class="copa-marquee-item">FRPJSTORE.BR</span>
-    <span class="copa-marquee-item">🏆 BRASIL 2026</span>
-    <span class="copa-marquee-item">STREETWEAR COPA</span>
-    <span class="copa-marquee-item">🇧🇷 COLEÇÃO COPA DO MUNDO 2026</span>
-    <span class="copa-marquee-item">FRPJSTORE.BR</span>
-    <span class="copa-marquee-item">🏆 BRASIL 2026</span>
-    <span class="copa-marquee-item">STREETWEAR COPA</span>
+    <span class="copa-marquee-item">🇧🇷 FLOW STATE</span>
+    <span class="copa-marquee-item">COLEÇÃO COPA 2026</span>
+    <span class="copa-marquee-item">🏆 BRASIL</span>
+    <span class="copa-marquee-item">DRY FIT PREMIUM</span>
+    <span class="copa-marquee-item">🇧🇷 FLOW STATE</span>
+    <span class="copa-marquee-item">COLEÇÃO COPA 2026</span>
+    <span class="copa-marquee-item">🏆 BRASIL</span>
+    <span class="copa-marquee-item">DRY FIT PREMIUM</span>
   </div>
-</div>
-
-<!-- CONFETTI COPA -->
-<div class="copa-confetti" aria-hidden="true">
-  <span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
 </div>
 
 <!-- NAV -->
 <nav class="nav" id="navbar">
   <a href="#" class="nav-logo">
-    <img src="data:image/png;base64,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" alt="FRPJSTORE">
-    <span class="nav-logo-text">FRPJSTORE<span>.BR</span></span>
+    <img src="WhatsApp Image 2026-06-07 at 14.29.22.jpeg" alt="Flow State" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Flow State</span>
   </a>
   <ul class="nav-links">
     <li><a href="#produtos">Produtos</a></li>
@@ -633,7 +631,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   <a href="https://wa.me/5563992795579" target="_blank" onclick="toggleMobileNav()">WhatsApp</a>
 </div>
 
-<!-- HERO COPA 2026 -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-map"></div>
   <div class="copa-glow copa-glow-g"></div>
@@ -641,16 +639,16 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   <!-- COLUNA ESQUERDA -->
   <div class="hero-left">
     <div class="hero-brand">
-      <img id="heroBrandLogo" class="hero-brand-logo" src="data:image/png;base64,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" alt="FRPJSTORE">
+      <img id="heroBrandLogo" class="hero-brand-logo" src="data:image/png;base64,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" alt="Flow State">
       <script>document.getElementById('heroBrandLogo').src=document.querySelector('.nav-logo img').src;</script>
       <div>
-        <div class="hero-brand-name">FRPJSTORE<span>.BR</span></div>
+        <div class="hero-brand-name">Flow State</div>
       </div>
     </div>
-    <div class="hero-brand-sep">STREETWEAR PREMIUM</div>
-    <div class="hero-copa-label">★ COLEÇÃO COPA DO MUNDO 2026 ★</div>
-    <h1 class="hero-main-top">ESTÁ EM</h1>
-    <div class="hero-main-oferta">OFERTA!</div>
+    <div class="hero-brand-sep">LUXURY STREETWEAR</div>
+    <div class="hero-copa-label" style="color:#c9a227;">★ COLEÇÃO COPA DO MUNDO 2026 ★</div>
+    <h1 class="hero-main-top">ROUPAS PARA<br>QUEM VIVE NO</h1>
+    <div class="hero-main-oferta" style="color:#fff;-webkit-text-stroke:2px #7B2FBE;">PRÓPRIO FLUXO.</div>
     <div class="hero-dryfit">
       <div class="hero-dryfit-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
@@ -662,28 +660,28 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
     </div>
     <div class="hero-features">
       <div class="hero-feat">
-        <div class="hero-feat-icon">
+        <div class="hero-feat-icon" style="border-color:rgba(0,160,60,.35);color:#1db954;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/><path d="M2 13c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/><path d="M2 18c2-2 4 0 6-2s4 0 6-2 4 0 6-2"/></svg>
         </div>
         <div class="hero-feat-name">Tecido Dry Fit</div>
         <div class="hero-feat-sub">Leve, respirável e de secagem rápida</div>
       </div>
       <div class="hero-feat">
-        <div class="hero-feat-icon">
+        <div class="hero-feat-icon" style="border-color:rgba(123,47,190,.35);color:#7B2FBE;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div class="hero-feat-name">Conforto Total</div>
         <div class="hero-feat-sub">Ajuste perfeito para o dia a dia</div>
       </div>
       <div class="hero-feat">
-        <div class="hero-feat-icon">
+        <div class="hero-feat-icon" style="border-color:rgba(201,162,39,.35);color:#c9a227;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </div>
         <div class="hero-feat-name">Durabilidade</div>
         <div class="hero-feat-sub">Alta qualidade que acompanha você</div>
       </div>
       <div class="hero-feat">
-        <div class="hero-feat-icon">
+        <div class="hero-feat-icon" style="border-color:rgba(0,160,60,.35);color:#1db954;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h8M5 12h6M5 16h8"/><path d="M15 12c0 3 2 5 5 5V7c-3 0-5 2-5 5z"/></svg>
         </div>
         <div class="hero-feat-name">Não Amassa</div>
@@ -691,7 +689,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
       </div>
     </div>
     <div class="hero-btns">
-      <a href="#produtos" class="btn-primary">VER COLEÇÃO →</a>
+      <a href="#produtos" class="btn-primary">COMPRE AGORA →</a>
       <a href="https://wa.me/5563992795579" target="_blank" class="btn-wpp-hero">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         FALAR NO ZAP
@@ -703,16 +701,16 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   <!-- SELOS DO HERO -->
   <div class="hero-seals">
     <div class="hero-seal">
-      <div class="hero-seal-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      <div class="hero-seal-icon" style="color:#1db954;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </div>
       <div>
-        <div class="hero-seal-name">Copa do Mundo 2026</div>
-        <div class="hero-seal-sub">Edição Especial</div>
+        <div class="hero-seal-name">Frete Grátis</div>
+        <div class="hero-seal-sub">Acima de R$ 180</div>
       </div>
     </div>
     <div class="hero-seal">
-      <div class="hero-seal-icon">
+      <div class="hero-seal-icon" style="color:#c9a227;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
       <div>
@@ -721,12 +719,12 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
       </div>
     </div>
     <div class="hero-seal">
-      <div class="hero-seal-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <div class="hero-seal-icon" style="color:#7B2FBE;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div>
-        <div class="hero-seal-name">Store Oficial</div>
-        <div class="hero-seal-sub">Streetwear Brasileiro</div>
+        <div class="hero-seal-name">Pagamento Seguro</div>
+        <div class="hero-seal-sub">Seus dados protegidos</div>
       </div>
     </div>
   </div>
@@ -735,16 +733,16 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
-    <span class="marquee-item">FRPJSTORE.BR</span>
-    <span class="marquee-item">STREETWEAR PREMIUM</span>
-    <span class="marquee-item">100% ALGODÃO</span>
-    <span class="marquee-item">OVERSIZED FIT</span>
-    <span class="marquee-item">ENVIO BRASIL</span>
-    <span class="marquee-item">AUTENTICIDADE</span>
-    <span class="marquee-item">FRPJSTORE.BR</span>
-    <span class="marquee-item">STREETWEAR PREMIUM</span>
-    <span class="marquee-item">100% ALGODÃO</span>
-    <span class="marquee-item">OVERSIZED FIT</span>
+    <span class="marquee-item">FLOW STATE</span>
+    <span class="marquee-item">LUXURY STREETWEAR</span>
+    <span class="marquee-item">DRY FIT PREMIUM</span>
+    <span class="marquee-item">COLEÇÃO BRASIL</span>
+    <span class="marquee-item">ENVIO NACIONAL</span>
+    <span class="marquee-item">VIVA NO FLUXO</span>
+    <span class="marquee-item">FLOW STATE</span>
+    <span class="marquee-item">LUXURY STREETWEAR</span>
+    <span class="marquee-item">DRY FIT PREMIUM</span>
+    <span class="marquee-item">COLEÇÃO BRASIL</span>
     <span class="marquee-item">ENVIO BRASIL</span>
     <span class="marquee-item">AUTENTICIDADE</span>
   </div>
@@ -760,9 +758,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   </div>
   <div class="filter-bar reveal">
     <button class="filter-btn active" data-filter="all">Todos</button>
-    <button class="filter-btn" data-filter="estampada">Estampadas</button>
-    <button class="filter-btn" data-filter="oversized">Oversized</button>
-    <button class="filter-btn" data-filter="copa" style="border-color:rgba(201,162,39,.4);color:#c9a227;">⚽ Copa 2026</button>
+    <button class="filter-btn" data-filter="copa">🇧🇷 Coleção Brasil</button>
     <div class="search-wrap">
       <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input class="search-input" id="searchInput" type="text" placeholder="Buscar...">
@@ -775,9 +771,9 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 <section class="about" id="sobre">
   <div class="about-inner">
     <div>
-      <img class="about-logo reveal" src="data:image/png;base64,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" alt="FRPJSTORE">
+      <img class="about-logo reveal" src="WhatsApp Image 2026-06-07 at 14.29.22.jpeg" alt="Flow State">
       <h2 class="about-title reveal">MAIS QUE<br>ROUPAS</h2>
-      <p class="about-text reveal">A FRPJSTORE.BR nasceu para representar autenticidade, conforto e estilo no streetwear brasileiro. Cada peça é criada com intenção — para quem vive a cultura, respeita a qualidade e quer se expressar com verdade.</p>
+      <p class="about-text reveal">A Flow State nasceu para representar autenticidade, liberdade e estilo. Cada peça é criada para quem vive no próprio ritmo — para quem não segue tendências, mas as define. Qualidade premium, identidade única.</p>
     </div>
     <div class="about-stats">
       <div class="stat-item reveal">
@@ -804,9 +800,9 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
 <footer>
   <div class="footer-top">
     <div>
-      <img class="footer-brand-logo" src="data:image/png;base64,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" alt="FRPJSTORE">
-      <div class="footer-brand-name">FRPJSTORE<span>.BR</span></div>
-      <p class="footer-desc">Streetwear premium com identidade brasileira. Qualidade e autenticidade em cada peça.</p>
+      <img class="footer-brand-logo" src="WhatsApp Image 2026-06-07 at 14.29.22.jpeg" alt="Flow State">
+      <div class="footer-brand-name">Flow State</div>
+      <p class="footer-desc">Roupas para quem vive no próprio fluxo. Luxury streetwear com identidade e qualidade premium.</p>
       <div class="footer-social">
         <a href="https://instagram.com/frpjstore.br" target="_blank" class="social-btn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1318,7 +1314,7 @@ let currentImgIdx = 0;
 function wppLink(p, size='') {
   const sz = size ? ` — Tamanho ${size}` : '';
   const pr = `R$ ${p.price.toFixed(2).replace('.',',')}`;
-  const msg = encodeURIComponent(`Olá! Vi o site da FRPJSTORE.BR e tenho interesse na camiseta *${p.name}*${sz} (${pr}). Pode me ajudar? 😊`);
+  const msg = encodeURIComponent(`Olá! Vi o site da Flow State e tenho interesse na camiseta *${p.name}*${sz} (${pr}). Pode me ajudar? 😊`);
   return `https://wa.me/${WPP}?text=${msg}`;
 }
 function priceDisplay(p) {
@@ -1909,7 +1905,7 @@ document.addEventListener('keydown', e => {
 });
 
 // ── INIT ──
-renderProducts(products);
+renderProducts(products.filter(p => p.id >= 16));
 updateCartUI();
 </script>
 
