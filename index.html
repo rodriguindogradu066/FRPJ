@@ -763,6 +763,7 @@ footer{background:var(--gray1);border-top:1px solid rgba(255,255,255,.06);paddin
   <div class="filter-bar reveal">
     <button class="filter-btn active" data-filter="all">Todos</button>
     <button class="filter-btn" data-filter="copa">🇧🇷 Coleção Brasil</button>
+    <button class="filter-btn" data-filter="oversized">👕 Coleção Oversized</button>
     <div class="search-wrap">
       <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input class="search-input" id="searchInput" type="text" placeholder="Buscar...">
@@ -1157,7 +1158,7 @@ const products = [
     id: 19,
     name: 'Flow State Medusa',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
     cor: 'Preto',
     sizes: ['P','M','G','GG'],
@@ -1168,7 +1169,7 @@ const products = [
     id: 20,
     name: 'Flow State Racionais',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
     cor: 'Preto',
     sizes: ['P','M','G','GG'],
@@ -1179,7 +1180,7 @@ const products = [
     id: 21,
     name: 'Flow State Senna',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
     cor: 'Preto',
     sizes: ['P','M','G','GG'],
@@ -1190,34 +1191,34 @@ const products = [
     id: 22,
     name: 'Flow State Chronic',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
     cor: 'Preto',
     sizes: ['P','M','G','GG'],
     front: 'WhatsApp Image 2026-06-11 at 22.38.55 (3).jpeg',
-    back:  'WhatsApp Image 2026-06-11 at 22.38.55 (3).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.56.jpeg',
   },
   {
     id: 23,
     name: 'Flow State São Jorge',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
-    cor: 'Branco',
+    cor: 'Off-white',
     sizes: ['P','M','G','GG'],
-    front: 'WhatsApp Image 2026-06-11 at 22.38.56.jpeg',
-    back:  'WhatsApp Image 2026-06-11 at 22.38.56 (1).jpeg',
+    front: 'WhatsApp Image 2026-06-11 at 22.38.56 (1).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.56 (2).jpeg',
   },
   {
     id: 24,
     name: 'Flow State Original Marginal',
     price: 65.5,
-    category: 'estampada',
+    category: 'oversized',
     badge: 'NOVO',
     cor: 'Preto',
     sizes: ['P','M','G','GG'],
-    front: 'WhatsApp Image 2026-06-11 at 22.38.56 (2).jpeg',
-    back:  'WhatsApp Image 2026-06-11 at 22.38.57.jpeg',
+    front: 'WhatsApp Image 2026-06-11 at 22.38.57.jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.57 (1).jpeg',
   },
 ];
 
@@ -1821,7 +1822,7 @@ document.addEventListener('keydown', e => {
 });
 
 // ── INIT ──
-renderProducts(products.filter(p => p.id >= 16));
+renderProducts(products);
 updateCartUI();
 </script>
 
