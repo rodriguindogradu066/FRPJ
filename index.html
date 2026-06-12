@@ -223,6 +223,7 @@ img{display:block;}
 .badge-hot{background:var(--white);color:var(--black);}
 .badge-new{background:rgba(255,255,255,.15);color:var(--white);border:1px solid rgba(255,255,255,.25);}
 .badge-limited{background:transparent;color:var(--white);border:1px solid var(--white);}
+.badge-novo{background:rgba(123,47,190,.18);color:#fff;border:1px solid rgba(123,47,190,.6);}
 .pcard-overlay{
   position:absolute;inset:0;z-index:8;
   background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 50%);
@@ -1303,6 +1304,83 @@ const products = [
     front: 'Completa azul camiseta.png',
     back:  'Camiseta azul.png',
   },
+  {
+    id: 18,
+    name: 'Flow State Básica Preta',
+    price: 65.5,
+    category: 'oversized',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.53.jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.54.jpeg',
+  },
+  {
+    id: 19,
+    name: 'Flow State Medusa',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.54 (1).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.54 (2).jpeg',
+  },
+  {
+    id: 20,
+    name: 'Flow State Racionais',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.54 (3).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.55.jpeg',
+  },
+  {
+    id: 21,
+    name: 'Flow State Senna',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.55 (1).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.55 (2).jpeg',
+  },
+  {
+    id: 22,
+    name: 'Flow State Chronic',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.55 (3).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.55 (3).jpeg',
+  },
+  {
+    id: 23,
+    name: 'Flow State São Jorge',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Branco',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.56.jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.56 (1).jpeg',
+  },
+  {
+    id: 24,
+    name: 'Flow State Original Marginal',
+    price: 65.5,
+    category: 'estampada',
+    badge: 'NOVO',
+    cor: 'Preto',
+    sizes: ['P','M','G','GG'],
+    front: 'WhatsApp Image 2026-06-11 at 22.38.56 (2).jpeg',
+    back:  'WhatsApp Image 2026-06-11 at 22.38.57.jpeg',
+  },
 ];
 
 // ── STATE ──
@@ -1339,7 +1417,7 @@ function renderProducts(list) {
         <img class="img-back"  src="${p.back}"  alt="${p.name} verso" loading="lazy">
       </div>
       ${p.badge ? `<span class="pcard-badge badge-${p.badge.toLowerCase()}">${p.badge}</span>` : ''}
-      <span class="pcard-badge badge-copa" style="top:16px;right:16px;left:auto;">⚽ COPA 2026</span>
+      ${p.category === 'copa' ? `<span class="pcard-badge badge-copa" style="top:16px;right:16px;left:auto;">⚽ COPA 2026</span>` : ''}
       <div class="pcard-overlay">
         <button class="pcard-buy" onclick="event.stopPropagation();openProduct(${p.id})">VER PRODUTO</button>
       </div>
@@ -1376,7 +1454,7 @@ function openProduct(id) {
   document.getElementById('pmThumb1').className = 'product-thumb active';
   document.getElementById('pmThumb2').className = 'product-thumb';
 
-  const badgeMap = {HOT:'badge-hot',NEW:'badge-new',LIMITED:'badge-limited'};
+  const badgeMap = {HOT:'badge-hot',NEW:'badge-new',LIMITED:'badge-limited',NOVO:'badge-novo'};
   document.getElementById('pmBadge').innerHTML = p.badge
     ? `<span class="pcard-badge ${badgeMap[p.badge]||''}">${p.badge}</span>` : '';
   document.getElementById('pmName').textContent = p.name;
